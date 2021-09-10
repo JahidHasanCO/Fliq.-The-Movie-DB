@@ -1,33 +1,24 @@
 package dev.jahidhasanco.movieapp.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
-import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
-import com.smarteist.autoimageslider.SliderAnimations
-import com.smarteist.autoimageslider.SliderView
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import dev.jahidhasanco.movieapp.R
-import dev.jahidhasanco.movieapp.data.model.movie.Result
-import dev.jahidhasanco.movieapp.data.viewModel.MovieViewModel
-import dev.jahidhasanco.movieapp.ui.adapter.silder.MovieSliderAdapter
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-
+import dev.jahidhasanco.movieapp.ui.adapter.tab.HomeTabAdapter
 
 class HomeFragment : Fragment() {
 
-    lateinit var image_slider_movieFragment: SliderView
-
-    lateinit var movieSliderAdapter: MovieSliderAdapter
-    lateinit var movieViewModel: MovieViewModel
+    lateinit var homeTabAdapter: HomeTabAdapter
+    lateinit var tab_layout_HomeFrag: TabLayout
+    lateinit var view_pager2_HomeFrag: ViewPager2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,52 +27,39 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        image_slider_movieFragment = view.findViewById(R.id.image_slider_movieFragment)
+        tab_layout_HomeFrag = view.findViewById(R.id.tab_layout_HomeFrag)
+        view_pager2_HomeFrag = view.findViewById(R.id.view_pager2_HomeFrag)
 
-        movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
-        movieViewModel.refresh()
 
-        observeViewModel()
+        val fm: FragmentManager = childFragmentManager
+
+        homeTabAdapter = HomeTabAdapter(fm, lifecycle)
+        view_pager2_HomeFrag.adapter = homeTabAdapter
+
+        tab_layout_HomeFrag.addTab(tab_layout_HomeFrag.newTab().setText("Movie"))
+        tab_layout_HomeFrag.addTab(tab_layout_HomeFrag.newTab().setText("Tv Show"))
+        tab_layout_HomeFrag.setSelectedTabIndicatorHeight(0)
+
+
+        tab_layout_HomeFrag.addOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                view_pager2_HomeFrag.currentItem = tab.position
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
+
+
+        view_pager2_HomeFrag.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                tab_layout_HomeFrag.selectTab(tab_layout_HomeFrag.getTabAt(position))
+            }
+        })
 
         return view
     }
 
-    private fun observeViewModel() {
-        movieViewModel.upComingMovies.observe(requireActivity(), Observer {countries ->
-            countries?.let {
-//                usersList.visibility = View.VISIBLE
-//                userListAdapter.updateCountries(it)
-//                Log.d("JAHIDHASAN", "Succes to get $it")
-//               movies.addAll(it)
-
-                movieSliderAdapter = MovieSliderAdapter(requireActivity(),it)
-                image_slider_movieFragment.setSliderAdapter(movieSliderAdapter)
-                image_slider_movieFragment.setIndicatorAnimation(IndicatorAnimationType.WORM)
-                image_slider_movieFragment.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION)
-                image_slider_movieFragment.startAutoCycle()
-
-
-            }
-
-        })
-        movieViewModel.movieLoadError.observe(requireActivity(), Observer { isError ->
-
-//            listError.visibility = if(isError == "") View.GONE else View.VISIBLE
-            Log.d("JAHIDHASAN","Error to get $isError")
-
-        })
-        movieViewModel.loading.observe(requireActivity(), Observer { isLoading ->
-            isLoading?.let {
-
-//                loadingView.visibility = if(it) View.VISIBLE else View.GONE
-//                if(it) {
-//                    listError.visibility = View.GONE
-//                    usersList.visibility = View.GONE
-//                }
-//
-            }
-        })
-    }
 
 
 }
