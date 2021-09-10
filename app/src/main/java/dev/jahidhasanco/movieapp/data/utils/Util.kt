@@ -7,14 +7,10 @@ import dev.jahidhasanco.movieapp.R
 
 //buildImageUrl(movie.posterPath!!)
 
-class Util {
-    fun ImageView.loadImage(uri: String?) {
-        val options = RequestOptions()
-            .error(R.mipmap.ic_launcher_round)
-        Glide.with(this.context)
-            .setDefaultRequestOptions(options)
-            .load("http://image.tmdb.org/t/p/w342$uri")
-            .into(this)
+object Util {
+    fun posterUrlMake(uri: String?):String {
+       return "http://image.tmdb.org/t/p/w342$uri"
+
     }
 }
 
