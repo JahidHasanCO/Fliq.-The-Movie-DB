@@ -8,12 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
 import dev.jahidhasanco.fliq.R
 import dev.jahidhasanco.fliq.data.viewModel.MovieViewModel
+import dev.jahidhasanco.fliq.ui.adapter.PopularMovieAdapter
 import dev.jahidhasanco.fliq.ui.adapter.silder.MovieSliderAdapter
 
 
@@ -22,8 +26,11 @@ class MovieFragment : Fragment() {
     lateinit var image_slider_movieFragment: SliderView
 
     lateinit var movieSliderAdapter: MovieSliderAdapter
+    lateinit var popularMovieAdapter: PopularMovieAdapter
+
     lateinit var movieViewModel: MovieViewModel
     lateinit var animationView_movieFragment: LottieAnimationView
+    lateinit var popularMovieRecView_moviesFragment: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +41,7 @@ class MovieFragment : Fragment() {
 
         image_slider_movieFragment = view.findViewById(R.id.image_slider_movieFragment)
         animationView_movieFragment = view.findViewById(R.id.animationView_movieFragment)
+        popularMovieRecView_moviesFragment = view.findViewById(R.id.popularMovieRecView_moviesFragment)
 
         hideLayout()
 
@@ -58,6 +66,7 @@ class MovieFragment : Fragment() {
     }
 
     private fun observeViewModel() {
+
         movieViewModel.upComingMovies.observe(requireActivity(), Observer {countries ->
             countries?.let {
 //                usersList.visibility = View.VISIBLE
@@ -70,6 +79,20 @@ class MovieFragment : Fragment() {
                 image_slider_movieFragment.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION)
                 image_slider_movieFragment.startAutoCycle()
 
+
+            }
+
+        })
+
+        movieViewModel.PopularMovies.observe(requireActivity(), Observer {countries ->
+            countries?.let {
+
+                popularMovieAdapter = PopularMovieAdapter(requireActivity(),it)
+                popularMovieRecView_moviesFragment.apply {
+                    adapter = popularMovieAdapter
+                    layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                    setHasFixedSize(false)
+                }
 
             }
 

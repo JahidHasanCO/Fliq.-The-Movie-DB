@@ -14,11 +14,13 @@ class MovieViewModel(): ViewModel() {
         onError("Exception handled: ${throwable.localizedMessage}")
     }
     val upComingMovies = MutableLiveData<List<Result>>()
+    val PopularMovies = MutableLiveData<List<Result>>()
     val movieLoadError = MutableLiveData<String?>()
     val loading = MutableLiveData<Boolean>()
 
     fun refresh() {
         fetchUpcomingMovies()
+        fetchPopularMovies()
     }
 
     private fun fetchUpcomingMovies() {
@@ -28,6 +30,24 @@ class MovieViewModel(): ViewModel() {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     upComingMovies.value = response.body()?.results
+                    movieLoadError.value = null
+                    loading.value = false
+                } else {
+                    onError("Error : ${response.message()} ")
+                }
+            }
+        }
+        movieLoadError.value = ""
+        loading.value = false
+    }
+
+    private fun fetchPopularMovies(){
+        loading.value = true
+        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
+            val response = retrofitService.getPopularMovies("",1)
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    PopularMovies.value = response.body()?.results
                     movieLoadError.value = null
                     loading.value = false
                 } else {
