@@ -15,12 +15,14 @@ class MovieViewModel(): ViewModel() {
     }
     val upComingMovies = MutableLiveData<List<Result>>()
     val PopularMovies = MutableLiveData<List<Result>>()
+    val TopRatedMovies = MutableLiveData<List<Result>>()
     val movieLoadError = MutableLiveData<String?>()
     val loading = MutableLiveData<Boolean>()
 
     fun refresh() {
         fetchUpcomingMovies()
         fetchPopularMovies()
+        fetchTopRatedMovies()
     }
 
     private fun fetchUpcomingMovies() {
@@ -58,6 +60,25 @@ class MovieViewModel(): ViewModel() {
         movieLoadError.value = ""
         loading.value = false
     }
+
+    private fun fetchTopRatedMovies() {
+        loading.value = true
+        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
+            val response = retrofitService.getTopRatedMovies("",1)
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    TopRatedMovies.value = response.body()?.results
+                    movieLoadError.value = null
+                    loading.value = false
+                } else {
+                    onError("Error : ${response.message()} ")
+                }
+            }
+        }
+        movieLoadError.value = ""
+        loading.value = false
+    }
+
     private fun onError(message: String) {
 
         GlobalScope.launch {

@@ -1,6 +1,7 @@
 package dev.jahidhasanco.fliq.ui.adapter
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import dev.jahidhasanco.fliq.R
 import dev.jahidhasanco.fliq.data.model.movie.Result
 import dev.jahidhasanco.fliq.data.utils.Constants
@@ -30,6 +33,12 @@ class PopularMovieAdapter(val ctx: Context, val movies: List<Result>) :
     override fun onBindViewHolder(viewHolder: MyViewHolder, position: Int) {
         val movie: Result = movies[position]
 
+        Glide
+            .with(ctx)
+            .load(Util.posterUrlMake(movie.posterPath))
+            .into(viewHolder.poster)
+
+
         viewHolder.movieTitle.text = movie.title
         viewHolder.releaseDate.text = movie.releaseDate
         viewHolder.genre1.text = Constants.getGenre(movie.genreIds[0])
@@ -41,12 +50,24 @@ class PopularMovieAdapter(val ctx: Context, val movies: List<Result>) :
             viewHolder.genre2Layout.visibility = View.INVISIBLE
         }
 
-        Glide.with(ctx)
-            .asBitmap()
-            .load(Util.posterUrlMake(movie.posterPath))
-            .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true))
-            .placeholder(R.drawable.poster)
-            .into(viewHolder.poster)
+
+
+//        Glide.with(ctx)
+//            .load(Util.posterUrlMake(movie.posterPath))
+//            .placeholder(R.drawable.poster_bg)
+//            .into(object : CustomTarget<Drawable>(1080, 1080) {
+//                override fun onResourceReady(
+//                    resource: Drawable,
+//                    transition: Transition<in Drawable>?
+//                ) {
+//                    viewHolder!!.poster.setImageDrawable(resource)
+//                }
+//
+//                override fun onLoadCleared(placeholder: Drawable?) {
+//
+//                }
+//
+//            })
     }
 
     override fun getItemCount(): Int {
