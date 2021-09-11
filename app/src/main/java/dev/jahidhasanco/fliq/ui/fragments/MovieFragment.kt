@@ -90,7 +90,7 @@ class MovieFragment : Fragment() {
                 popularMovieAdapter = PopularMovieAdapter(requireActivity(),it)
                 popularMovieRecView_moviesFragment.apply {
                     adapter = popularMovieAdapter
-                    layoutManager = GridLayoutManager(requireContext(),2)
+                    layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                     setHasFixedSize(false)
                 }
 
