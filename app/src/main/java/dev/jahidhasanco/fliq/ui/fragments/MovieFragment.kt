@@ -28,10 +28,13 @@ class MovieFragment : Fragment() {
 
     lateinit var movieSliderAdapter: MovieSliderAdapter
     lateinit var popularMovieAdapter: PopularMovieAdapter
+    lateinit var topRatedMovieAdapter: PopularMovieAdapter
 
     lateinit var movieViewModel: MovieViewModel
     lateinit var animationView_movieFragment: LottieAnimationView
     lateinit var popularMovieRecView_moviesFragment: RecyclerView
+    lateinit var topRated_MovieLayout_movieFrag: LinearLayout
+    lateinit var topRatedMovieRecView_moviesFragment: RecyclerView
 
     lateinit var noInternet_Layout_movieFragment: LinearLayout
     lateinit var popular_MovieLayout_movieFrag: LinearLayout
@@ -48,6 +51,8 @@ class MovieFragment : Fragment() {
         popularMovieRecView_moviesFragment = view.findViewById(R.id.popularMovieRecView_moviesFragment)
         noInternet_Layout_movieFragment = view.findViewById(R.id.noInternet_Layout_movieFragment)
         popular_MovieLayout_movieFrag = view.findViewById(R.id.popular_MovieLayout_movieFrag)
+        topRated_MovieLayout_movieFrag = view.findViewById(R.id.topRated_MovieLayout_movieFrag)
+        topRatedMovieRecView_moviesFragment = view.findViewById(R.id.topRatedMovieRecView_moviesFragment)
 
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
@@ -68,6 +73,7 @@ class MovieFragment : Fragment() {
         animationView_movieFragment.visibility = View.GONE
         image_slider_movieFragment.visibility = View.VISIBLE
         popular_MovieLayout_movieFrag.visibility = View.VISIBLE
+        topRated_MovieLayout_movieFrag.visibility = View.VISIBLE
     }
 
     private fun observeViewModel() {
@@ -103,6 +109,22 @@ class MovieFragment : Fragment() {
             }
 
         })
+
+        movieViewModel.TopRatedMovies.observe(requireActivity(), Observer {countries ->
+            countries?.let {
+
+                topRatedMovieAdapter = PopularMovieAdapter(requireActivity(),it)
+                topRatedMovieRecView_moviesFragment.apply {
+                    adapter = topRatedMovieAdapter
+                    layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                    setHasFixedSize(false)
+                    showLayout()
+                }
+
+            }
+
+        })
+
         movieViewModel.movieLoadError.observe(requireActivity(), Observer { isError ->
 
 
@@ -110,10 +132,12 @@ class MovieFragment : Fragment() {
                 noInternet_Layout_movieFragment.visibility =  View.GONE
                 image_slider_movieFragment.visibility = View.VISIBLE
                 popular_MovieLayout_movieFrag.visibility = View.VISIBLE
+                topRated_MovieLayout_movieFrag.visibility = View.VISIBLE
             }else{
                 noInternet_Layout_movieFragment.visibility =  View.VISIBLE
                 image_slider_movieFragment.visibility = View.INVISIBLE
                 popular_MovieLayout_movieFrag.visibility = View.INVISIBLE
+                topRated_MovieLayout_movieFrag.visibility = View.INVISIBLE
             }
 
         })
@@ -125,6 +149,7 @@ class MovieFragment : Fragment() {
                 if(it) {
                     image_slider_movieFragment.visibility = View.GONE
                     popular_MovieLayout_movieFrag.visibility = View.GONE
+                    topRated_MovieLayout_movieFrag.visibility = View.GONE
                 }
 
             }

@@ -2,6 +2,7 @@ package dev.jahidhasanco.fliq.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -54,6 +55,9 @@ class HomeFragment : Fragment() {
                 tab_layout_HomeFrag.selectTab(tab_layout_HomeFrag.getTabAt(position))
             }
         })
+
+
+
 
         return view
     }

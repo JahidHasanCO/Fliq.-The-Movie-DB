@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/backGround"
+    >
 
     <ImageView
         android:id="@+id/imageView_single_movie_slider"
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/poster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
