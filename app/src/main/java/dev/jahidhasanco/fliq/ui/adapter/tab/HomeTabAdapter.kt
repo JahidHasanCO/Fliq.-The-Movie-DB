@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import dev.jahidhasanco.fliq.ui.fragments.MovieFragment
+import dev.jahidhasanco.fliq.ui.fragments.TvShowFragment
 
 class HomeTabAdapter(fragmentManager: FragmentManager,lifecycle: Lifecycle): FragmentStateAdapter(fragmentManager, lifecycle) {
 
@@ -15,7 +16,7 @@ class HomeTabAdapter(fragmentManager: FragmentManager,lifecycle: Lifecycle): Fra
     override fun createFragment(position: Int): Fragment {
         when (position) {
             1 -> return MovieFragment()
-            2 -> return MovieFragment()
+            2 -> return TvShowFragment()
         }
         return MovieFragment()
     }
