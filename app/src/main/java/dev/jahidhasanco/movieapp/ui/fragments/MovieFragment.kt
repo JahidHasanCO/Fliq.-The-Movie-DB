@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.airbnb.lottie.LottieAnimationView
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
@@ -22,6 +23,7 @@ class MovieFragment : Fragment() {
 
     lateinit var movieSliderAdapter: MovieSliderAdapter
     lateinit var movieViewModel: MovieViewModel
+    lateinit var animationView_movieFragment: LottieAnimationView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,13 +33,28 @@ class MovieFragment : Fragment() {
         val view =  inflater.inflate(R.layout.fragment_movie, container, false)
 
         image_slider_movieFragment = view.findViewById(R.id.image_slider_movieFragment)
+        animationView_movieFragment = view.findViewById(R.id.animationView_movieFragment)
+
+        hideLayout()
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
         movieViewModel.refresh()
 
         observeViewModel()
-
+        showLayout()
         return view
+    }
+
+    private fun hideLayout() {
+        animationView_movieFragment.playAnimation()
+        image_slider_movieFragment.visibility = View.GONE
+        animationView_movieFragment.visibility = View.VISIBLE
+    }
+
+    private fun showLayout(){
+        animationView_movieFragment.pauseAnimation()
+        animationView_movieFragment.visibility = View.GONE
+        image_slider_movieFragment.visibility = View.VISIBLE
     }
 
     private fun observeViewModel() {
@@ -47,7 +64,6 @@ class MovieFragment : Fragment() {
 //                userListAdapter.updateCountries(it)
 //                Log.d("JAHIDHASAN", "Succes to get $it")
 //               movies.addAll(it)
-
                 movieSliderAdapter = MovieSliderAdapter(requireActivity(),it)
                 image_slider_movieFragment.setSliderAdapter(movieSliderAdapter)
                 image_slider_movieFragment.setIndicatorAnimation(IndicatorAnimationType.WORM)
@@ -66,6 +82,7 @@ class MovieFragment : Fragment() {
         })
         movieViewModel.loading.observe(requireActivity(), Observer { isLoading ->
             isLoading?.let {
+
 
 //                loadingView.visibility = if(it) View.VISIBLE else View.GONE
 //                if(it) {

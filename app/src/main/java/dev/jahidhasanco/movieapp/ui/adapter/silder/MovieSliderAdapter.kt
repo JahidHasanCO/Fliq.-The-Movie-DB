@@ -20,7 +20,7 @@ public class MovieSliderAdapter(val ctx :Context , val movies : List<Result>):
 
 
     override fun getCount(): Int {
-        return movies.size
+        return 5
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?): MyViewHolder {

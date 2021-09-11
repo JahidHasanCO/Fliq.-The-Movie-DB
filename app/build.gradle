@@ -65,5 +65,7 @@ dependencies {
 
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
 
+    implementation 'com.airbnb.android:lottie:3.4.0'
+
 
 }
