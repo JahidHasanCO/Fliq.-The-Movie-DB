@@ -103,7 +103,12 @@ class MovieFragment : Fragment() {
         })
         movieViewModel.movieLoadError.observe(requireActivity(), Observer { isError ->
 
-            noInternet_Layout_movieFragment.visibility = if(isError == "" || isError == null) View.GONE else View.VISIBLE
+
+            if(isError == "" || isError == null){
+                noInternet_Layout_movieFragment.visibility =  View.GONE
+            }else{
+                noInternet_Layout_movieFragment.visibility =  View.VISIBLE
+            }
 
         })
         movieViewModel.loading.observe(requireActivity(), Observer { isLoading ->
