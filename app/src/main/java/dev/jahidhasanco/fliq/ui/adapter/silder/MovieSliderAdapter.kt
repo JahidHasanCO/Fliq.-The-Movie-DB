@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.smarteist.autoimageslider.SliderViewAdapter
 import dev.jahidhasanco.fliq.R
@@ -44,10 +45,13 @@ public class MovieSliderAdapter(val ctx :Context , val movies : List<Result>):
         }
 
         Glide.with(ctx)
-            .asBitmap()
             .load(Util.posterUrlMake(movie.posterPath))
             .placeholder(R.drawable.poster)
             .into(viewHolder.poster)
+
+        viewHolder.itemView.setOnClickListener {
+            Toast.makeText(ctx, "You Clicked ${movie.title}",Toast.LENGTH_SHORT).show()
+        }
 
 
     }
