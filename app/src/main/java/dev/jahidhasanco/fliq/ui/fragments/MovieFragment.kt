@@ -34,6 +34,7 @@ class MovieFragment : Fragment() {
     lateinit var popularMovieRecView_moviesFragment: RecyclerView
 
     lateinit var noInternet_Layout_movieFragment: LinearLayout
+    lateinit var popular_MovieLayout_movieFrag: LinearLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +47,7 @@ class MovieFragment : Fragment() {
         animationView_movieFragment = view.findViewById(R.id.animationView_movieFragment)
         popularMovieRecView_moviesFragment = view.findViewById(R.id.popularMovieRecView_moviesFragment)
         noInternet_Layout_movieFragment = view.findViewById(R.id.noInternet_Layout_movieFragment)
+        popular_MovieLayout_movieFrag = view.findViewById(R.id.popular_MovieLayout_movieFrag)
 
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
@@ -65,7 +67,7 @@ class MovieFragment : Fragment() {
         animationView_movieFragment.pauseAnimation()
         animationView_movieFragment.visibility = View.GONE
         image_slider_movieFragment.visibility = View.VISIBLE
-        popularMovieRecView_moviesFragment.visibility = View.VISIBLE
+        popular_MovieLayout_movieFrag.visibility = View.VISIBLE
     }
 
     private fun observeViewModel() {
@@ -107,11 +109,11 @@ class MovieFragment : Fragment() {
             if(isError == "" || isError == null){
                 noInternet_Layout_movieFragment.visibility =  View.GONE
                 image_slider_movieFragment.visibility = View.VISIBLE
-                popularMovieRecView_moviesFragment.visibility = View.VISIBLE
+                popular_MovieLayout_movieFrag.visibility = View.VISIBLE
             }else{
                 noInternet_Layout_movieFragment.visibility =  View.VISIBLE
-                image_slider_movieFragment.visibility = View.GONE
-                popularMovieRecView_moviesFragment.visibility = View.GONE
+                image_slider_movieFragment.visibility = View.INVISIBLE
+                popular_MovieLayout_movieFrag.visibility = View.INVISIBLE
             }
 
         })
@@ -122,7 +124,7 @@ class MovieFragment : Fragment() {
                 animationView_movieFragment.visibility = if(it) View.VISIBLE else View.GONE
                 if(it) {
                     image_slider_movieFragment.visibility = View.GONE
-                    popularMovieRecView_moviesFragment.visibility = View.GONE
+                    popular_MovieLayout_movieFrag.visibility = View.GONE
                 }
 
             }

@@ -9,10 +9,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.smarteist.autoimageslider.SliderViewAdapter
 import dev.jahidhasanco.fliq.R
 import dev.jahidhasanco.fliq.data.model.movie.Result
 import dev.jahidhasanco.fliq.data.utils.Constants
+import dev.jahidhasanco.fliq.data.utils.Helper
 import dev.jahidhasanco.fliq.data.utils.Util
 
 
@@ -33,9 +36,25 @@ public class MovieSliderAdapter(val ctx :Context , val movies : List<Result>):
     override fun onBindViewHolder(viewHolder: MyViewHolder?, position: Int) {
         val movie: Result = movies[position]
 
-        viewHolder!!.movieTitle.text = movie.title
+
+        Glide.with(ctx)
+            .load(Util.posterUrlMake(movie.posterPath))
+            .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true))
+            .placeholder(R.drawable.poster)
+            .into(viewHolder!!.poster)
+
+
+
+        if(Helper.CompareDate(movie.releaseDate) == 1){
+            viewHolder.titleBig.text = "New Movies"
+        }else if(Helper.CompareDate(movie.releaseDate) == 2){
+            viewHolder.titleBig.text = "Upcoming Movies"
+        }
+
+        viewHolder.movieTitle.text = movie.title
         viewHolder.releaseDate.text = movie.releaseDate
         viewHolder.genre1.text = Constants.getGenre(movie.genreIds[0])
+
 
         if(movie.genreIds.size > 1){
             viewHolder.genre2.text = Constants.getGenre(movie.genreIds[1])
@@ -44,10 +63,7 @@ public class MovieSliderAdapter(val ctx :Context , val movies : List<Result>):
             viewHolder.genre2Layout.visibility = View.INVISIBLE
         }
 
-        Glide.with(ctx)
-            .load(Util.posterUrlMake(movie.posterPath))
-            .placeholder(R.drawable.poster)
-            .into(viewHolder.poster)
+
 
         viewHolder.itemView.setOnClickListener {
             Toast.makeText(ctx, "You Clicked ${movie.title}",Toast.LENGTH_SHORT).show()
@@ -60,6 +76,7 @@ public class MovieSliderAdapter(val ctx :Context , val movies : List<Result>):
     class MyViewHolder(itemView: View) : SliderViewAdapter.ViewHolder(itemView) {
         val poster = itemView.findViewById<ImageView>(R.id.imageView_single_movie_slider)
         val movieTitle = itemView.findViewById<TextView>(R.id.title_single_movie_slider)
+        val titleBig = itemView.findViewById<TextView>(R.id.titleBig_single_movie_slider)
         val releaseDate = itemView.findViewById<TextView>(R.id.date_single_movie_slider)
         val genre1 = itemView.findViewById<TextView>(R.id.genre1_movie_slider)
         val genre2 = itemView.findViewById<TextView>(R.id.genre2_movie_slider)

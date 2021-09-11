@@ -34,6 +34,7 @@
             app:sliderStartAutoCycle="true" />
 
         <LinearLayout
+            android:id="@+id/popular_MovieLayout_movieFrag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"

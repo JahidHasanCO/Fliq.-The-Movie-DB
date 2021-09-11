@@ -9,6 +9,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import dev.jahidhasanco.fliq.R
 import dev.jahidhasanco.fliq.data.model.movie.Result
 import dev.jahidhasanco.fliq.data.utils.Constants
@@ -42,6 +44,7 @@ class PopularMovieAdapter(val ctx: Context, val movies: List<Result>) :
         Glide.with(ctx)
             .asBitmap()
             .load(Util.posterUrlMake(movie.posterPath))
+            .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true))
             .placeholder(R.drawable.poster)
             .into(viewHolder.poster)
     }
