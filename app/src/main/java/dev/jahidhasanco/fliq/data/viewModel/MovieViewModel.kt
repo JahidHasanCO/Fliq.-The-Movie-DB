@@ -59,8 +59,13 @@ class MovieViewModel(): ViewModel() {
         loading.value = false
     }
     private fun onError(message: String) {
-        movieLoadError.value = message
-        loading.value = false
+
+        GlobalScope.launch {
+            withContext(Dispatchers.Main){
+                movieLoadError.value = message
+                loading.value = false
+            }
+        }
     }
     override fun onCleared() {
         super.onCleared()

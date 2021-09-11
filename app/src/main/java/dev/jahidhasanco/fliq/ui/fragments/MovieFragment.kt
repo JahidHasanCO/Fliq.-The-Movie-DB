@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -32,6 +33,9 @@ class MovieFragment : Fragment() {
     lateinit var animationView_movieFragment: LottieAnimationView
     lateinit var popularMovieRecView_moviesFragment: RecyclerView
 
+    lateinit var noInternet_Layout_movieFragment: LinearLayout
+    lateinit var popular_MovieLayout_movieFrag: LinearLayout
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,14 +46,14 @@ class MovieFragment : Fragment() {
         image_slider_movieFragment = view.findViewById(R.id.image_slider_movieFragment)
         animationView_movieFragment = view.findViewById(R.id.animationView_movieFragment)
         popularMovieRecView_moviesFragment = view.findViewById(R.id.popularMovieRecView_moviesFragment)
+        noInternet_Layout_movieFragment = view.findViewById(R.id.noInternet_Layout_movieFragment)
+        popular_MovieLayout_movieFrag = view.findViewById(R.id.popular_MovieLayout_movieFrag)
 
-        hideLayout()
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
         movieViewModel.refresh()
 
         observeViewModel()
-        showLayout()
         return view
     }
 
@@ -63,6 +67,7 @@ class MovieFragment : Fragment() {
         animationView_movieFragment.pauseAnimation()
         animationView_movieFragment.visibility = View.GONE
         image_slider_movieFragment.visibility = View.VISIBLE
+        popular_MovieLayout_movieFrag.visibility = View.VISIBLE
     }
 
     private fun observeViewModel() {
@@ -92,6 +97,7 @@ class MovieFragment : Fragment() {
                     adapter = popularMovieAdapter
                     layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                     setHasFixedSize(false)
+                    showLayout()
                 }
 
             }
@@ -99,20 +105,28 @@ class MovieFragment : Fragment() {
         })
         movieViewModel.movieLoadError.observe(requireActivity(), Observer { isError ->
 
-//            listError.visibility = if(isError == "") View.GONE else View.VISIBLE
-            Log.d("JAHIDHASAN","Error to get $isError")
+
+            if(isError == "" || isError == null){
+                noInternet_Layout_movieFragment.visibility =  View.GONE
+                image_slider_movieFragment.visibility = View.VISIBLE
+                popular_MovieLayout_movieFrag.visibility = View.VISIBLE
+            }else{
+                noInternet_Layout_movieFragment.visibility =  View.VISIBLE
+                image_slider_movieFragment.visibility = View.INVISIBLE
+                popular_MovieLayout_movieFrag.visibility = View.INVISIBLE
+            }
 
         })
         movieViewModel.loading.observe(requireActivity(), Observer { isLoading ->
             isLoading?.let {
 
 
-//                loadingView.visibility = if(it) View.VISIBLE else View.GONE
-//                if(it) {
-//                    listError.visibility = View.GONE
-//                    usersList.visibility = View.GONE
-//                }
-//
+                animationView_movieFragment.visibility = if(it) View.VISIBLE else View.GONE
+                if(it) {
+                    image_slider_movieFragment.visibility = View.GONE
+                    popular_MovieLayout_movieFrag.visibility = View.GONE
+                }
+
             }
         })
     }
