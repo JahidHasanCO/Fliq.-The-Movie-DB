@@ -6,6 +6,10 @@
         android:title="@string/home"
         android:icon="@drawable/ic_home"/>
     <item
+        android:id="@+id/tvShowMenu"
+        android:title="TV Show"
+        android:icon="@drawable/ic_tv"/>
+    <item
         android:id="@+id/searchMenu"
         android:title="@string/search"
         android:icon="@drawable/ic_search"/>

@@ -136,7 +136,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/topRatedMovieRecView_moviesFragment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="60dp"
+                />
 
         </LinearLayout>
 
@@ -145,7 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/popular_MovieLayout_movieFrag"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -155,11 +157,11 @@
 
         <LinearLayout
             android:id="@+id/noInternet_Layout_movieFragment"
-            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/popular_MovieLayout_movieFrag"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -173,11 +175,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/aldrich"
+                android:gravity="center"
                 android:text="No Internet"
                 android:textColor="@color/primary"
-                android:gravity="center"
-                android:fontFamily="@font/aldrich"
-                android:textSize="25sp"/>
+                android:textSize="25sp" />
 
 
         </LinearLayout>

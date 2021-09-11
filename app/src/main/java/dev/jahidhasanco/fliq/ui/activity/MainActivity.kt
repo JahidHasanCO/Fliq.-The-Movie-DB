@@ -9,6 +9,7 @@ import dev.jahidhasanco.fliq.R
 import dev.jahidhasanco.fliq.ui.fragments.MovieFragment
 import dev.jahidhasanco.fliq.ui.fragments.ProfileFragment
 import dev.jahidhasanco.fliq.ui.fragments.SearchFragment
+import dev.jahidhasanco.fliq.ui.fragments.TvShowFragment
 
 
 class MainActivity : AppCompatActivity() ,BottomNavigationView.OnNavigationItemSelectedListener{
@@ -43,6 +44,12 @@ class MainActivity : AppCompatActivity() ,BottomNavigationView.OnNavigationItemS
         when (item.itemId) {
             R.id.homeMenu -> {
                 val fragment = MovieFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer_activityMain, fragment, fragment.javaClass.simpleName)
+                    .commit()
+                return true
+            }
+            R.id.tvShowMenu -> {
+                val fragment = TvShowFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer_activityMain, fragment, fragment.javaClass.simpleName)
                     .commit()
                 return true

@@ -71,6 +71,12 @@ public class MovieSliderAdapter(val ctx :Context , val movies : List<Result>):
         }else if(Helper.CompareDate(movie.releaseDate) == 2){
             viewHolder!!.titleBig.text = "Upcoming Movies"
         }
+        if(movie.adult){
+            viewHolder.adultCheck.text = "18+"
+        }
+        else{
+            viewHolder.adultCheck.text = "13+"
+        }
 
         viewHolder!!.movieTitle.text = movie.title
         viewHolder.releaseDate.text = movie.releaseDate
@@ -102,5 +108,6 @@ public class MovieSliderAdapter(val ctx :Context , val movies : List<Result>):
         val genre1 = itemView.findViewById<TextView>(R.id.genre1_movie_slider)
         val genre2 = itemView.findViewById<TextView>(R.id.genre2_movie_slider)
         val genre2Layout = itemView.findViewById<LinearLayout>(R.id.genre2Layout_movie_slider)
+        val adultCheck = itemView.findViewById<TextView>(R.id.adultCheck_movie_slider)
     }
 }
