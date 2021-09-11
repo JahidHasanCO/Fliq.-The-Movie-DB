@@ -44,8 +44,9 @@ public class MovieSliderAdapter(val ctx :Context , val movies : List<Result>):
         }
 
         Glide.with(ctx)
+            .asBitmap()
             .load(Util.posterUrlMake(movie.posterPath))
-            .placeholder(R.drawable.poster_bg)
+            .placeholder(R.drawable.poster)
             .into(viewHolder.poster)
 
 

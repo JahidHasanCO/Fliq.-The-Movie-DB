@@ -39,7 +39,6 @@ class HomeFragment : Fragment() {
         tab_layout_HomeFrag.addTab(tab_layout_HomeFrag.newTab().setText("Tv Show"))
         tab_layout_HomeFrag.setSelectedTabIndicatorHeight(0)
 
-
         tab_layout_HomeFrag.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 view_pager2_HomeFrag.currentItem = tab.position
