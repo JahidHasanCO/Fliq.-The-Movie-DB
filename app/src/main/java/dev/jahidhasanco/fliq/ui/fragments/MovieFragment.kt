@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
@@ -24,6 +25,7 @@ class MovieFragment : Fragment() {
     lateinit var movieSliderAdapter: MovieSliderAdapter
     lateinit var movieViewModel: MovieViewModel
     lateinit var animationView_movieFragment: LottieAnimationView
+    lateinit var popularMovieRecView_moviesFragment: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +36,7 @@ class MovieFragment : Fragment() {
 
         image_slider_movieFragment = view.findViewById(R.id.image_slider_movieFragment)
         animationView_movieFragment = view.findViewById(R.id.animationView_movieFragment)
+        popularMovieRecView_moviesFragment = view.findViewById(R.id.popularMovieRecView_moviesFragment)
 
         hideLayout()
 
