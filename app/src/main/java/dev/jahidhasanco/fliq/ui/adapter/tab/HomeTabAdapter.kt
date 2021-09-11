@@ -15,8 +15,8 @@ class HomeTabAdapter(fragmentManager: FragmentManager,lifecycle: Lifecycle): Fra
 
     override fun createFragment(position: Int): Fragment {
         when (position) {
-            1 -> return MovieFragment()
-            2 -> return TvShowFragment()
+            0 -> return MovieFragment()
+            1 -> return TvShowFragment()
         }
         return MovieFragment()
     }

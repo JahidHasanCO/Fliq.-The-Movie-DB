@@ -106,8 +106,12 @@ class MovieFragment : Fragment() {
 
             if(isError == "" || isError == null){
                 noInternet_Layout_movieFragment.visibility =  View.GONE
+                image_slider_movieFragment.visibility = View.VISIBLE
+                popularMovieRecView_moviesFragment.visibility = View.VISIBLE
             }else{
                 noInternet_Layout_movieFragment.visibility =  View.VISIBLE
+                image_slider_movieFragment.visibility = View.GONE
+                popularMovieRecView_moviesFragment.visibility = View.GONE
             }
 
         })

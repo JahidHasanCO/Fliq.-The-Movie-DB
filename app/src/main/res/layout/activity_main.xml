@@ -17,7 +17,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-
         android:background="@drawable/bottom_nav_bg"
         android:id="@+id/bottomNavMenu"
         android:layout_width="match_parent"
@@ -26,6 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu"
+        style="@style/BottomNavigationTheme"
         />
 
 
