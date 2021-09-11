@@ -33,6 +33,14 @@
             app:sliderScrollTimeInSec="4"
             app:sliderStartAutoCycle="true" />
 
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/logo"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:id="@+id/popular_MovieLayout_movieFrag"
             android:layout_width="match_parent"
