@@ -1,4 +1,4 @@
-package dev.jahidhasanco.movieapp.ui.fragments
+package dev.jahidhasanco.fliq.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -12,9 +12,9 @@ import com.airbnb.lottie.LottieAnimationView
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
-import dev.jahidhasanco.movieapp.R
-import dev.jahidhasanco.movieapp.data.viewModel.MovieViewModel
-import dev.jahidhasanco.movieapp.ui.adapter.silder.MovieSliderAdapter
+import dev.jahidhasanco.fliq.R
+import dev.jahidhasanco.fliq.data.viewModel.MovieViewModel
+import dev.jahidhasanco.fliq.ui.adapter.silder.MovieSliderAdapter
 
 
 class MovieFragment : Fragment() {

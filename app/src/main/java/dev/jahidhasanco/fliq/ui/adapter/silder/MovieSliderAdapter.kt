@@ -1,4 +1,4 @@
-package dev.jahidhasanco.movieapp.ui.adapter.silder
+package dev.jahidhasanco.fliq.ui.adapter.silder
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,10 +9,10 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.smarteist.autoimageslider.SliderViewAdapter
-import dev.jahidhasanco.movieapp.R
-import dev.jahidhasanco.movieapp.data.model.movie.Result
-import dev.jahidhasanco.movieapp.data.utils.Constants
-import dev.jahidhasanco.movieapp.data.utils.Util
+import dev.jahidhasanco.fliq.R
+import dev.jahidhasanco.fliq.data.model.movie.Result
+import dev.jahidhasanco.fliq.data.utils.Constants
+import dev.jahidhasanco.fliq.data.utils.Util
 
 
 public class MovieSliderAdapter(val ctx :Context , val movies : List<Result>):

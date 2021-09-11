@@ -1,14 +1,10 @@
-package dev.jahidhasanco.movieapp.ui.activity
+package dev.jahidhasanco.fliq.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import dev.jahidhasanco.movieapp.R
-import dev.jahidhasanco.movieapp.data.viewModel.MovieViewModel
-import dev.jahidhasanco.movieapp.ui.fragments.HomeFragment
+import dev.jahidhasanco.fliq.R
+import dev.jahidhasanco.fliq.ui.fragments.HomeFragment
 
 
 class MainActivity : AppCompatActivity() {

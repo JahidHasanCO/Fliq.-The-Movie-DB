@@ -1,10 +1,10 @@
-package dev.jahidhasanco.movieapp.ui.adapter.tab
+package dev.jahidhasanco.fliq.ui.adapter.tab
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import dev.jahidhasanco.movieapp.ui.fragments.MovieFragment
+import dev.jahidhasanco.fliq.ui.fragments.MovieFragment
 
 class HomeTabAdapter(fragmentManager: FragmentManager,lifecycle: Lifecycle): FragmentStateAdapter(fragmentManager, lifecycle) {
 

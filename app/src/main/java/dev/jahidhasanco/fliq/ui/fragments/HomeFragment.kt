@@ -1,18 +1,17 @@
-package dev.jahidhasanco.movieapp.ui.fragments
+package dev.jahidhasanco.fliq.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-import dev.jahidhasanco.movieapp.R
-import dev.jahidhasanco.movieapp.ui.adapter.tab.HomeTabAdapter
+import dev.jahidhasanco.fliq.R
+import dev.jahidhasanco.fliq.ui.adapter.tab.HomeTabAdapter
 
 class HomeFragment : Fragment() {
 

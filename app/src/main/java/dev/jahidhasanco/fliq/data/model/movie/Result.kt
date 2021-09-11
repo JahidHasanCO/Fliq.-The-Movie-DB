@@ -1,4 +1,4 @@
-package dev.jahidhasanco.movieapp.data.model.movie
+package dev.jahidhasanco.fliq.data.model.movie
 
 
 import com.google.gson.annotations.SerializedName

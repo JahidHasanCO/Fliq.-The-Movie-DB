@@ -1,4 +1,4 @@
-package dev.jahidhasanco.movieapp
+package dev.jahidhasanco.fliq
 
 import org.junit.Test
 

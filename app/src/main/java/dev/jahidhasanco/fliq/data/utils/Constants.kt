@@ -1,4 +1,4 @@
-package dev.jahidhasanco.movieapp.data.utils
+package dev.jahidhasanco.fliq.data.utils
 
 class Constants {
     companion object{

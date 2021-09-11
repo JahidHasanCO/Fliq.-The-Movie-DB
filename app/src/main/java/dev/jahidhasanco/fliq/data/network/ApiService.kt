@@ -1,6 +1,6 @@
-package dev.jahidhasanco.movieapp.data.network
+package dev.jahidhasanco.fliq.data.network
 
-import dev.jahidhasanco.movieapp.data.model.movie.Movie
+import dev.jahidhasanco.fliq.data.model.movie.Movie
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

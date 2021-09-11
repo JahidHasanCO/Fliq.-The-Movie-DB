@@ -1,9 +1,9 @@
-package dev.jahidhasanco.movieapp.data.viewModel
+package dev.jahidhasanco.fliq.data.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import dev.jahidhasanco.movieapp.data.model.movie.Result
-import dev.jahidhasanco.movieapp.data.network.RetrofitService
+import dev.jahidhasanco.fliq.data.model.movie.Result
+import dev.jahidhasanco.fliq.data.network.RetrofitService
 import kotlinx.coroutines.*
 
 class MovieViewModel(): ViewModel() {
