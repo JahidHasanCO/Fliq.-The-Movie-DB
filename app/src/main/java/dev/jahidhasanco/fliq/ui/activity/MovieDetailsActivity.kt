@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.github.ybq.android.spinkit.SpinKitView
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import dev.jahidhasanco.fliq.R
@@ -22,6 +23,11 @@ import dev.jahidhasanco.fliq.ui.adapter.MovieCastAdapter
 import dev.jahidhasanco.fliq.ui.adapter.MovieCrewAdapter
 import dev.jahidhasanco.fliq.ui.adapter.PopularMovieAdapter
 import dev.jahidhasanco.fliq.ui.adapter.silder.MovieSliderAdapter
+import com.github.ybq.android.spinkit.style.DoubleBounce
+
+import com.github.ybq.android.spinkit.sprite.Sprite
+import com.github.ybq.android.spinkit.style.Wave
+
 
 class MovieDetailsActivity : AppCompatActivity() {
 
@@ -40,6 +46,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     lateinit var progress_bar_MovieDetails: ProgressBar
     lateinit var castRecView_movieDetails: RecyclerView
     lateinit var crewRecView_movieDetails: RecyclerView
+    lateinit var spin_kit_movieDetails: ProgressBar
 
     lateinit var movieCastAdapter: MovieCastAdapter
     lateinit var movieCrewAdapter: MovieCrewAdapter
@@ -65,13 +72,15 @@ class MovieDetailsActivity : AppCompatActivity() {
         popularity_movieDetails = findViewById(R.id.popularity_movieDetails)
         castRecView_movieDetails = findViewById(R.id.castRecView_movieDetails)
         crewRecView_movieDetails = findViewById(R.id.crewRecView_movieDetails)
+        spin_kit_movieDetails = findViewById(R.id.spin_kit_movieDetails)
 
         movieId = intent.getStringExtra("MovieIdPass").toString()
 
         backBtn_movie_Details.setOnClickListener {
             onBackPressed()
         }
-
+        val doubleBounce: Sprite = Wave()
+        spin_kit_movieDetails.indeterminateDrawable = doubleBounce
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
         movieViewModel.getMovieDetails(movieId, "en-US")
@@ -151,7 +160,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
                 movieCrewAdapter = MovieCrewAdapter(this,it)
                 crewRecView_movieDetails.apply {
-                    adapter = movieCastAdapter
+                    adapter = movieCrewAdapter
                     layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
                     setHasFixedSize(false)
                 }
@@ -179,13 +188,12 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieViewModel.loading.observe(this, Observer { isLoading ->
             isLoading?.let {
 
-//
-//                animationView_movieFragment.visibility = if(it) View.VISIBLE else View.GONE
-//                if(it) {
-//                    image_slider_movieFragment.visibility = View.GONE
-//                    popular_MovieLayout_movieFrag.visibility = View.GONE
-//                    topRated_MovieLayout_movieFrag.visibility = View.GONE
-//                }
+                if(it){
+                    spin_kit_movieDetails.visibility = View.VISIBLE
+                }
+                else{
+                    spin_kit_movieDetails.visibility = View.INVISIBLE
+                }
 
             }
         })

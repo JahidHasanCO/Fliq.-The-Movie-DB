@@ -18,7 +18,7 @@
             android:id="@+id/imageView_single_movie_Details"
             android:layout_width="match_parent"
             android:layout_height="500dp"
-            android:src="@drawable/poster"
+            android:src="@drawable/poster_bg"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +88,7 @@
                 android:maxLines="2"
                 android:text="Haarry Potter"
                 android:textColor="@color/mainText"
-                android:textSize="25sp"
+                android:textSize="27sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -269,9 +269,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -289,38 +290,36 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_marginTop="10dp"
                 android:id="@+id/movieOverview_MovieDetails"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/aldrich"
                 android:maxLines="8"
                 android:text="overview"
-                android:textSize="15sp"
                 android:textColor="@color/textAd"
-                android:fontFamily="@font/aldrich"
-                />
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
                 android:fontFamily="@font/aldrich"
                 android:gravity="center_vertical"
                 android:text="Cast"
                 android:textColor="@color/primary"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="5dp"
                 android:id="@+id/castRecView_movieDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
 
                 />
 
@@ -328,28 +327,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:fontFamily="@font/aldrich"
                 android:gravity="center_vertical"
                 android:text="Crew"
                 android:textColor="@color/primary"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="5dp"
                 android:id="@+id/crewRecView_movieDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
 
                 />
 
         </LinearLayout>
 
-
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:visibility="invisible"
+            android:id="@+id/spin_kit_movieDetails"
+            style="@style/SpinKitView.Large.Wave"
+            android:layout_marginTop="400dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
