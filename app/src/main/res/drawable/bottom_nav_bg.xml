@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <gradient android:startColor="@color/backGroundAd"
-        android:endColor="#301F2123"
+        android:endColor="#B31F2123"
         android:angle="90"
         />
 
