@@ -200,6 +200,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/trailer_movieDetails"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_film_strip"

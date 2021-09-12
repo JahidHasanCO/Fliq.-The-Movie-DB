@@ -3,6 +3,7 @@ package dev.jahidhasanco.fliq.data.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dev.jahidhasanco.fliq.data.model.movie.Result
+import dev.jahidhasanco.fliq.data.model.movie.YoutubeTrailer.MovieTrailer
 import dev.jahidhasanco.fliq.data.model.movie.movieCredit.Cast
 import dev.jahidhasanco.fliq.data.model.movie.movieCredit.Crew
 import dev.jahidhasanco.fliq.data.model.movie.movieCredit.MovieCredit
@@ -23,6 +24,7 @@ class MovieViewModel(): ViewModel() {
     val MovieDetails = MutableLiveData<MovieDetails>()
     val MovieCast = MutableLiveData<List<Cast>>()
     val MovieCrew = MutableLiveData<List<Crew>>()
+    val MovieTrailer = MutableLiveData<MovieTrailer>()
     val movieLoadError = MutableLiveData<String?>()
     val loading = MutableLiveData<Boolean>()
 
@@ -39,6 +41,29 @@ class MovieViewModel(): ViewModel() {
     fun getMovieCredit(movieId : String,language: String) {
         fetchMovieCredits(movieId,language)
     }
+
+    fun getMovieTrailer(movieId : String,language: String) {
+        fetchMovieTrailer(movieId,language)
+    }
+
+    private fun fetchMovieTrailer(movieId: String, language: String) {
+        loading.value = true
+        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
+            val response = retrofitService.getMovieTrailer(movieId,language)
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    MovieTrailer.value = response.body()
+                    movieLoadError.value = null
+                    loading.value = false
+                } else {
+                    onError("Error : ${response.message()} ")
+                }
+            }
+        }
+        movieLoadError.value = ""
+        loading.value = false
+    }
+
 
     private fun fetchMovieCredits(movieId: String, language: String) {
 

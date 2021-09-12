@@ -32,7 +32,7 @@ import com.github.ybq.android.spinkit.style.Wave
 
 class MovieDetailsActivity : AppCompatActivity() {
 
-    var movieId: String = ""
+    private var movieId: String = ""
     lateinit var movieViewModel: MovieViewModel
 
     lateinit var title_single_movie_Details: TextView
@@ -43,6 +43,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     lateinit var movieOverview_MovieDetails: TextView
     lateinit var popularity_movieDetails: TextView
     lateinit var imageView_single_movie_Details: ImageView
+    lateinit var trailer_movieDetails: ImageView
     lateinit var genre2Layout_movie_Details: LinearLayout
     lateinit var progress_bar_MovieDetails: ProgressBar
     lateinit var castRecView_movieDetails: RecyclerView
@@ -82,6 +83,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         adultCheckLayout_movieDetails = findViewById(R.id.adultCheckLayout_movieDetails)
         linearLayout2_title_movieDetails = findViewById(R.id.linearLayout2_title_movieDetails)
         descLayout = findViewById(R.id.descLayout)
+        trailer_movieDetails = findViewById(R.id.trailer_movieDetails)
 
         hideAllLayouts()
 
@@ -97,6 +99,12 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieViewModel.getMovieDetails(movieId, "en-US")
         movieViewModel.getMovieCredit(movieId,"en-US")
         observeViewModel()
+
+        trailer_movieDetails.setOnClickListener {
+            val intent = Intent(this,YoutubeVideoPlayerActivity::class.java)
+            intent.putExtra("MovieIdPass",movieId)
+            startActivity(intent)
+        }
 
         Handler().postDelayed({
 
