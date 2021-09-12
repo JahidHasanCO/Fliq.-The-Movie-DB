@@ -125,15 +125,15 @@ class MovieDetailsActivity : AppCompatActivity() {
                 }
 
 
-                if(it.popularity.toInt() < 99){
-                    progress_bar_MovieDetails.progress = it.popularity.toInt()
-                    popularity_movieDetails.text = "Popularity $it.popularity.toInt()%"
-                }else{
-                    progress_bar_MovieDetails.progress = 100
-                    popularity_movieDetails.text = "Popularity 100%"
-                }
-
-
+//                if(it.popularity.toInt() < 99){
+//                    progress_bar_MovieDetails.progress = it.popularity.toInt()
+//                    popularity_movieDetails.text = "Popularity $it.popularity.toInt()%"
+//                }else{
+//                    progress_bar_MovieDetails.progress = 100
+//                    popularity_movieDetails.text = "Popularity 100%"
+//                }
+                progress_bar_MovieDetails.progress = (it.voteAverage * 10).toInt()
+                popularity_movieDetails.text = "${it.voteAverage} Rating"
             }
 
         })

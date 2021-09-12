@@ -70,7 +70,7 @@
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="60dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/imageView_single_movie_Details"
             app:layout_constraintEnd_toEndOf="parent"
@@ -182,7 +182,7 @@
         <LinearLayout
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="-40dp"
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -199,8 +199,8 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/ic_film_strip"
                     />
                 <TextView
@@ -209,7 +209,7 @@
                     android:text="Trailer"
                     android:textColor="@color/primary"
                     android:fontFamily="@font/aldrich"
-                    android:textSize="15sp"/>
+                    android:textSize="13sp"/>
 
 
             </LinearLayout>
@@ -223,8 +223,8 @@
                 <ProgressBar
                     android:id="@+id/progress_bar_MovieDetails"
                     style="@style/CircularDeterminateProgressBar"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -239,7 +239,7 @@
                     android:textColor="@color/primary"
                     android:text="Popularity"
                     android:fontFamily="@font/aldrich"
-                    android:textSize="15sp"/>
+                    android:textSize="13sp"/>
 
 
             </LinearLayout>
@@ -251,8 +251,8 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/ic_save"
                     />
                 <TextView
@@ -261,7 +261,7 @@
                     android:text="Watchlist"
                     android:textColor="@color/primary"
                     android:fontFamily="@font/aldrich"
-                    android:textSize="15sp"/>
+                    android:textSize="13sp"/>
 
 
             </LinearLayout>
