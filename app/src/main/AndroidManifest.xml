@@ -12,11 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieApp">
         <activity
+            android:name=".ui.activity.YoutubeVideoPlayerActivity"
+            android:screenOrientation="landscape"
+            android:exported="true" />
+        <activity
             android:name=".ui.activity.MovieDetailsActivity"
             android:exported="true" />
         <activity
             android:name=".ui.activity.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

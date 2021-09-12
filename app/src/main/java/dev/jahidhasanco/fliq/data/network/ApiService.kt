@@ -1,6 +1,7 @@
 package dev.jahidhasanco.fliq.data.network
 
 import dev.jahidhasanco.fliq.data.model.movie.Movie
+import dev.jahidhasanco.fliq.data.model.movie.YoutubeTrailer.MovieTrailer
 import dev.jahidhasanco.fliq.data.model.movie.movieCredit.MovieCredit
 import dev.jahidhasanco.fliq.data.model.movie.movieDetails.MovieDetails
 import retrofit2.Response
@@ -32,6 +33,8 @@ interface ApiService {
     @GET("3/movie/{movieId}/credits?api_key=$API_KEY")
     suspend fun getMovieCredit(@Path("movieId") movieId: String, @Query("language") language: String): Response<MovieCredit>
 
+    @GET("3/movie/{movieId}/videos?api_key=$API_KEY")
+    suspend fun getMovieTrailer(@Path("movieId") movieId: String, @Query("language") language: String): Response<MovieTrailer>
 
 }
 

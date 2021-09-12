@@ -3,6 +3,7 @@ package dev.jahidhasanco.fliq.ui.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
@@ -31,7 +32,7 @@ import com.github.ybq.android.spinkit.style.Wave
 
 class MovieDetailsActivity : AppCompatActivity() {
 
-    var movieId: String = ""
+    private var movieId: String = ""
     lateinit var movieViewModel: MovieViewModel
 
     lateinit var title_single_movie_Details: TextView
@@ -42,6 +43,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     lateinit var movieOverview_MovieDetails: TextView
     lateinit var popularity_movieDetails: TextView
     lateinit var imageView_single_movie_Details: ImageView
+    lateinit var trailer_movieDetails: ImageView
     lateinit var genre2Layout_movie_Details: LinearLayout
     lateinit var progress_bar_MovieDetails: ProgressBar
     lateinit var castRecView_movieDetails: RecyclerView
@@ -50,6 +52,10 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     lateinit var movieCastAdapter: MovieCastAdapter
     lateinit var movieCrewAdapter: MovieCrewAdapter
+    lateinit var linearLayout_movieTrailer: LinearLayout
+    lateinit var adultCheckLayout_movieDetails: LinearLayout
+    lateinit var linearLayout2_title_movieDetails: LinearLayout
+    lateinit var descLayout: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +79,13 @@ class MovieDetailsActivity : AppCompatActivity() {
         castRecView_movieDetails = findViewById(R.id.castRecView_movieDetails)
         crewRecView_movieDetails = findViewById(R.id.crewRecView_movieDetails)
         spin_kit_movieDetails = findViewById(R.id.spin_kit_movieDetails)
+        linearLayout_movieTrailer = findViewById(R.id.linearLayout_movieTrailer)
+        adultCheckLayout_movieDetails = findViewById(R.id.adultCheckLayout_movieDetails)
+        linearLayout2_title_movieDetails = findViewById(R.id.linearLayout2_title_movieDetails)
+        descLayout = findViewById(R.id.descLayout)
+        trailer_movieDetails = findViewById(R.id.trailer_movieDetails)
+
+        hideAllLayouts()
 
         movieId = intent.getStringExtra("MovieIdPass").toString()
 
@@ -87,7 +100,38 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieViewModel.getMovieCredit(movieId,"en-US")
         observeViewModel()
 
+        trailer_movieDetails.setOnClickListener {
+            val intent = Intent(this,YoutubeVideoPlayerActivity::class.java)
+            intent.putExtra("MovieIdPass",movieId)
+            startActivity(intent)
+        }
+
+        Handler().postDelayed({
+
+            showAllLayouts()
+
+        }, 600)
+
+
     }
+
+    private fun hideAllLayouts() {
+        spin_kit_movieDetails.visibility = View.VISIBLE
+        imageView_single_movie_Details.visibility = View.INVISIBLE
+        linearLayout_movieTrailer.visibility = View.INVISIBLE
+        descLayout.visibility = View.INVISIBLE
+        adultCheckLayout_movieDetails.visibility = View.INVISIBLE
+        linearLayout2_title_movieDetails.visibility = View.INVISIBLE
+    }
+
+    private fun showAllLayouts() {
+        spin_kit_movieDetails.visibility = View.INVISIBLE
+        imageView_single_movie_Details.visibility = View.VISIBLE
+        linearLayout_movieTrailer.visibility = View.VISIBLE
+        descLayout.visibility = View.VISIBLE
+        linearLayout2_title_movieDetails.visibility = View.VISIBLE
+    }
+
 
 
     private fun observeViewModel() {
@@ -125,15 +169,15 @@ class MovieDetailsActivity : AppCompatActivity() {
                 }
 
 
-                if(it.popularity.toInt() < 99){
-                    progress_bar_MovieDetails.progress = it.popularity.toInt()
-                    popularity_movieDetails.text = "Popularity $it.popularity.toInt()%"
-                }else{
-                    progress_bar_MovieDetails.progress = 100
-                    popularity_movieDetails.text = "Popularity 100%"
-                }
-
-
+//                if(it.popularity.toInt() < 99){
+//                    progress_bar_MovieDetails.progress = it.popularity.toInt()
+//                    popularity_movieDetails.text = "Popularity $it.popularity.toInt()%"
+//                }else{
+//                    progress_bar_MovieDetails.progress = 100
+//                    popularity_movieDetails.text = "Popularity 100%"
+//                }
+                progress_bar_MovieDetails.progress = (it.voteAverage * 10).toInt()
+                popularity_movieDetails.text = "${it.voteAverage} Rating"
             }
 
         })
@@ -187,14 +231,6 @@ class MovieDetailsActivity : AppCompatActivity() {
         })
         movieViewModel.loading.observe(this, Observer { isLoading ->
             isLoading?.let {
-
-                if(it){
-                    spin_kit_movieDetails.visibility = View.VISIBLE
-                }
-                else{
-                    spin_kit_movieDetails.visibility = View.INVISIBLE
-                }
-
             }
         })
     }

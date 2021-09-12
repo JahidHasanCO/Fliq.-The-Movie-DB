@@ -1,6 +1,7 @@
 package dev.jahidhasanco.fliq.ui.adapter.silder
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +24,7 @@ import dev.jahidhasanco.fliq.data.model.movie.Result
 import dev.jahidhasanco.fliq.data.utils.Constants
 import dev.jahidhasanco.fliq.data.utils.Helper
 import dev.jahidhasanco.fliq.data.utils.Util
+import dev.jahidhasanco.fliq.ui.activity.MovieDetailsActivity
 
 
 public class MovieSliderAdapter(val ctx :Context , val movies : List<Result>):
@@ -93,7 +95,10 @@ public class MovieSliderAdapter(val ctx :Context , val movies : List<Result>):
 
 
         viewHolder.itemView.setOnClickListener {
-            Toast.makeText(ctx, "You Clicked ${movie.title}",Toast.LENGTH_SHORT).show()
+            val intent = Intent(ctx, MovieDetailsActivity::class.java)
+            val movieId:String = movie.id.toString()
+            intent.putExtra("MovieIdPass",movieId)
+            ctx.startActivity(intent)
         }
 
 
