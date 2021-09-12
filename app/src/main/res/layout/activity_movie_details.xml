@@ -307,16 +307,41 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/aldrich"
                 android:gravity="center_vertical"
                 android:text="Cast"
                 android:textColor="@color/primary"
-                android:textSize="16sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="5dp"
+                android:id="@+id/castRecView_movieDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/aldrich"
+                android:gravity="center_vertical"
+                android:text="Crew"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="5dp"
-                android:id="@+id/castRecView_movieDetails"
+                android:id="@+id/crewRecView_movieDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 

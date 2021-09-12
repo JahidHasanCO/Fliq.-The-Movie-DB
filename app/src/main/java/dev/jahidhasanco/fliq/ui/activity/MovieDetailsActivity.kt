@@ -19,6 +19,7 @@ import dev.jahidhasanco.fliq.data.utils.Constants
 import dev.jahidhasanco.fliq.data.utils.Util
 import dev.jahidhasanco.fliq.data.viewModel.MovieViewModel
 import dev.jahidhasanco.fliq.ui.adapter.MovieCastAdapter
+import dev.jahidhasanco.fliq.ui.adapter.MovieCrewAdapter
 import dev.jahidhasanco.fliq.ui.adapter.PopularMovieAdapter
 import dev.jahidhasanco.fliq.ui.adapter.silder.MovieSliderAdapter
 
@@ -38,8 +39,10 @@ class MovieDetailsActivity : AppCompatActivity() {
     lateinit var genre2Layout_movie_Details: LinearLayout
     lateinit var progress_bar_MovieDetails: ProgressBar
     lateinit var castRecView_movieDetails: RecyclerView
+    lateinit var crewRecView_movieDetails: RecyclerView
 
     lateinit var movieCastAdapter: MovieCastAdapter
+    lateinit var movieCrewAdapter: MovieCrewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +64,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         progress_bar_MovieDetails = findViewById(R.id.progress_bar_MovieDetails)
         popularity_movieDetails = findViewById(R.id.popularity_movieDetails)
         castRecView_movieDetails = findViewById(R.id.castRecView_movieDetails)
+        crewRecView_movieDetails = findViewById(R.id.crewRecView_movieDetails)
 
         movieId = intent.getStringExtra("MovieIdPass").toString()
 
@@ -132,6 +136,21 @@ class MovieDetailsActivity : AppCompatActivity() {
 
                 movieCastAdapter = MovieCastAdapter(this,it)
                 castRecView_movieDetails.apply {
+                    adapter = movieCastAdapter
+                    layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+                    setHasFixedSize(false)
+                }
+
+            }
+
+        })
+
+        movieViewModel.MovieCrew.observe(this, Observer { crew ->
+
+            crew?.let {
+
+                movieCrewAdapter = MovieCrewAdapter(this,it)
+                crewRecView_movieDetails.apply {
                     adapter = movieCastAdapter
                     layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
                     setHasFixedSize(false)
