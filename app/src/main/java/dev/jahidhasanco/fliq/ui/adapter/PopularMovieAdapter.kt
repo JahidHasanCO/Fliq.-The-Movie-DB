@@ -73,7 +73,7 @@ class PopularMovieAdapter(val ctx: Context, val movies: List<Result>) :
 
         viewHolder.itemView.setOnClickListener {
             val intent = Intent(ctx,MovieDetailsActivity::class.java)
-            val movieId = movie.id
+            val movieId:String = movie.id.toString()
             intent.putExtra("MovieIdPass",movieId)
             ctx.startActivity(intent)
         }

@@ -9,6 +9,7 @@ import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,6 +56,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieOverview_MovieDetails = findViewById(R.id.movieOverview_MovieDetails)
 
         movieId = intent.getStringExtra("MovieIdPass").toString()
+        Toast.makeText(this,"Id: $movieId",Toast.LENGTH_SHORT).show()
 
         backBtn_movie_Details.setOnClickListener {
             onBackPressed()
