@@ -1,7 +1,10 @@
 package dev.jahidhasanco.fliq.ui.activity
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 import androidx.lifecycle.Observer
@@ -23,6 +26,7 @@ class YoutubeVideoPlayerActivity : AppCompatActivity() {
     lateinit var backBtn_youtubeVideoPlayerPage: ImageView
     lateinit var movieViewModel: MovieViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_youtube_video_player)
@@ -35,14 +39,13 @@ class YoutubeVideoPlayerActivity : AppCompatActivity() {
         youtube_player_view = findViewById(R.id.youtube_player_view)
         backBtn_youtubeVideoPlayerPage = findViewById(R.id.backBtn_youtubeVideoPlayerPage)
 
+        backBtn_youtubeVideoPlayerPage.visibility = View.INVISIBLE
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
         movieViewModel.getMovieTrailer(movieId, "en-US")
         observeViewModel()
 
         lifecycle.addObserver(youtube_player_view)
-
-
 
         backBtn_youtubeVideoPlayerPage.setOnClickListener {
             onBackPressed()

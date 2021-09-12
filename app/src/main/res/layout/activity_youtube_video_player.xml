@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         app:showVideoCurrentTime="true"
         app:showFullScreenButton="true"
+        android:drawingCacheQuality="high"
         app:showSeekBar="true"
         app:showVideoDuration="true"
         app:showYouTubeButton="false"
