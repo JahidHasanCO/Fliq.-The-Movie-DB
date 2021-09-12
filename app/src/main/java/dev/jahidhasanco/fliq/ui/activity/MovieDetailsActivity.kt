@@ -96,15 +96,23 @@ class MovieDetailsActivity : AppCompatActivity() {
                 date_single_movie_Details.text = it.releaseDate
                 movieOverview_MovieDetails.text = it.overview
 
-                genre1_movie_Details.text = Constants.getGenre(it.genres[0].id)
+                genre1_movie_Details.text = it.genres[0].name
                 if(it.genres.size > 1){
-                    genre2_movie_Details.text = Constants.getGenre(it.genres[1].id)
+                    genre2_movie_Details.text = it.genres[1].name
                     genre2Layout_movie_Details.visibility = View.VISIBLE
                 }else{
                     genre2Layout_movie_Details.visibility = View.INVISIBLE
                 }
-                progress_bar_MovieDetails.progress = it.popularity.toInt()
-                popularity_movieDetails.text = "Popularity $it.popularity.toInt()%"
+
+
+                if(it.popularity.toInt() < 99){
+                    progress_bar_MovieDetails.progress = it.popularity.toInt()
+                    popularity_movieDetails.text = "Popularity $it.popularity.toInt()%"
+                }else{
+                    progress_bar_MovieDetails.progress = 100
+                    popularity_movieDetails.text = "Popularity 100%"
+                }
+
 
             }
 
