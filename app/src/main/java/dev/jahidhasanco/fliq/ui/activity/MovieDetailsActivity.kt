@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.ImageView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,8 +30,13 @@ class MovieDetailsActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         );
 
+        val backBtn_movie_Details: ImageView = findViewById(R.id.backBtn_movie_Details)
 
         movieId = intent.getStringExtra("MovieIdPass").toString()
+
+        backBtn_movie_Details.setOnClickListener {
+            onBackPressed()
+        }
 
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
