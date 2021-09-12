@@ -289,7 +289,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
                 android:id="@+id/movieOverview_MovieDetails"
                 android:layout_marginRight="10dp"
@@ -301,6 +300,26 @@
                 android:textSize="15sp"
                 android:textColor="@color/textAd"
                 android:fontFamily="@font/aldrich"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/aldrich"
+                android:gravity="center_vertical"
+                android:text="Cast"
+                android:textColor="@color/primary"
+                android:textSize="16sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/castRecView_movieDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
                 />
 
         </LinearLayout>

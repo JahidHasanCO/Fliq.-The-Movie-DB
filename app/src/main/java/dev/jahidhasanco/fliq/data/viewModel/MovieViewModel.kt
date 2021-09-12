@@ -3,6 +3,8 @@ package dev.jahidhasanco.fliq.data.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dev.jahidhasanco.fliq.data.model.movie.Result
+import dev.jahidhasanco.fliq.data.model.movie.movieCredit.Cast
+import dev.jahidhasanco.fliq.data.model.movie.movieCredit.Crew
 import dev.jahidhasanco.fliq.data.model.movie.movieCredit.MovieCredit
 import dev.jahidhasanco.fliq.data.model.movie.movieDetails.MovieDetails
 import dev.jahidhasanco.fliq.data.network.RetrofitService
@@ -19,7 +21,8 @@ class MovieViewModel(): ViewModel() {
     val PopularMovies = MutableLiveData<List<Result>>()
     val TopRatedMovies = MutableLiveData<List<Result>>()
     val MovieDetails = MutableLiveData<MovieDetails>()
-    val MovieCredit= MutableLiveData<MovieCredit>()
+    val MovieCast = MutableLiveData<List<Cast>>()
+    val MovieCrew = MutableLiveData<List<Crew>>()
     val movieLoadError = MutableLiveData<String?>()
     val loading = MutableLiveData<Boolean>()
 
@@ -44,7 +47,8 @@ class MovieViewModel(): ViewModel() {
             val response = retrofitService.getMovieCredit(movieId,language)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-                    MovieCredit.value = response.body()
+                    MovieCast.value = response.body()!!.cast
+                    MovieCrew.value = response.body()!!.crew
                     movieLoadError.value = null
                     loading.value = false
                 } else {

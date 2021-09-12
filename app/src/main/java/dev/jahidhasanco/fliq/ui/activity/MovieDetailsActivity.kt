@@ -10,6 +10,7 @@ import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
@@ -17,6 +18,7 @@ import dev.jahidhasanco.fliq.R
 import dev.jahidhasanco.fliq.data.utils.Constants
 import dev.jahidhasanco.fliq.data.utils.Util
 import dev.jahidhasanco.fliq.data.viewModel.MovieViewModel
+import dev.jahidhasanco.fliq.ui.adapter.MovieCastAdapter
 import dev.jahidhasanco.fliq.ui.adapter.PopularMovieAdapter
 import dev.jahidhasanco.fliq.ui.adapter.silder.MovieSliderAdapter
 
@@ -35,6 +37,9 @@ class MovieDetailsActivity : AppCompatActivity() {
     lateinit var imageView_single_movie_Details: ImageView
     lateinit var genre2Layout_movie_Details: LinearLayout
     lateinit var progress_bar_MovieDetails: ProgressBar
+    lateinit var castRecView_movieDetails: RecyclerView
+
+    lateinit var movieCastAdapter: MovieCastAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +60,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieOverview_MovieDetails = findViewById(R.id.movieOverview_MovieDetails)
         progress_bar_MovieDetails = findViewById(R.id.progress_bar_MovieDetails)
         popularity_movieDetails = findViewById(R.id.popularity_movieDetails)
+        castRecView_movieDetails = findViewById(R.id.castRecView_movieDetails)
 
         movieId = intent.getStringExtra("MovieIdPass").toString()
 
@@ -65,6 +71,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
         movieViewModel.getMovieDetails(movieId, "en-US")
+        movieViewModel.getMovieCredit(movieId,"en-US")
         observeViewModel()
 
     }
@@ -118,6 +125,21 @@ class MovieDetailsActivity : AppCompatActivity() {
 
         })
 
+
+        movieViewModel.MovieCast.observe(this, Observer { cast ->
+
+            cast?.let {
+
+                movieCastAdapter = MovieCastAdapter(this,it)
+                castRecView_movieDetails.apply {
+                    adapter = movieCastAdapter
+                    layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+                    setHasFixedSize(false)
+                }
+
+            }
+
+        })
 
         movieViewModel.movieLoadError.observe(this, Observer { isError ->
 
