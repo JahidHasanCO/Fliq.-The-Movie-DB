@@ -36,6 +36,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
+            android:id="@+id/adultCheckLayout_movieDetails"
             android:layout_width="38dp"
             android:layout_height="22dp"
             android:layout_marginTop="40dp"
@@ -67,7 +68,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
+            android:id="@+id/linearLayout2_title_movieDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
@@ -86,7 +87,7 @@
                 android:layout_marginRight="10dp"
                 android:fontFamily="@font/aldrich"
                 android:maxLines="2"
-                android:text="Haarry Potter"
+                android:text=""
                 android:textColor="@color/mainText"
                 android:textSize="27sp"
                 android:textStyle="bold" />
@@ -183,7 +184,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="-40dp"
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearLayout_movieTrailer"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:orientation="horizontal"
@@ -269,13 +270,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout3"
+            android:id="@+id/descLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout_movieTrailer">
 
             <TextView
                 android:layout_width="match_parent"
