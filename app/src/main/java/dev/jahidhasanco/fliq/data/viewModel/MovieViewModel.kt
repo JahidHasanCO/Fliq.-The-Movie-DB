@@ -3,6 +3,7 @@ package dev.jahidhasanco.fliq.data.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dev.jahidhasanco.fliq.data.model.movie.Result
+import dev.jahidhasanco.fliq.data.model.movie.movieDetails.MovieDetails
 import dev.jahidhasanco.fliq.data.network.RetrofitService
 import kotlinx.coroutines.*
 
@@ -16,6 +17,7 @@ class MovieViewModel(): ViewModel() {
     val upComingMovies = MutableLiveData<List<Result>>()
     val PopularMovies = MutableLiveData<List<Result>>()
     val TopRatedMovies = MutableLiveData<List<Result>>()
+    val MovieDetails = MutableLiveData<MovieDetails>()
     val movieLoadError = MutableLiveData<String?>()
     val loading = MutableLiveData<Boolean>()
 
@@ -23,6 +25,28 @@ class MovieViewModel(): ViewModel() {
         fetchUpcomingMovies()
         fetchPopularMovies()
         fetchTopRatedMovies()
+    }
+
+    fun getMovieDetails(movieId : String,language: String) {
+        fetchMovieDetails(movieId,language)
+    }
+
+    private fun fetchMovieDetails(movieId: String,language: String) {
+        loading.value = true
+        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
+            val response = retrofitService.getMovieDetails(movieId,language)
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    MovieDetails.value = response.body()
+                    movieLoadError.value = null
+                    loading.value = false
+                } else {
+                    onError("Error : ${response.message()} ")
+                }
+            }
+        }
+        movieLoadError.value = ""
+        loading.value = false
     }
 
     private fun fetchUpcomingMovies() {

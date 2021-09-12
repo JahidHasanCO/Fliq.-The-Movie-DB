@@ -1,6 +1,7 @@
 package dev.jahidhasanco.fliq.data.network
 
 import dev.jahidhasanco.fliq.data.model.movie.Movie
+import dev.jahidhasanco.fliq.data.model.movie.movieDetails.MovieDetails
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -25,7 +26,7 @@ interface ApiService {
     suspend fun getTopRatedMovies(@Query("language") language: String,@Query("page") page : Int): Response<Movie>
 
     @GET("3/movie/{movieId}?api_key=$API_KEY")
-    suspend fun getMovieDetails(@Path("movieId") movieId: String, @Query("language") language: String): Response<Movie>
+    suspend fun getMovieDetails(@Path("movieId") movieId: String, @Query("language") language: String): Response<MovieDetails>
 
 
 }
