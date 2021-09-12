@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,8 +31,10 @@ class MovieDetailsActivity : AppCompatActivity() {
     lateinit var genre1_movie_Details: TextView
     lateinit var genre2_movie_Details: TextView
     lateinit var movieOverview_MovieDetails: TextView
+    lateinit var popularity_movieDetails: TextView
     lateinit var imageView_single_movie_Details: ImageView
     lateinit var genre2Layout_movie_Details: LinearLayout
+    lateinit var progress_bar_MovieDetails: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +53,10 @@ class MovieDetailsActivity : AppCompatActivity() {
         genre2_movie_Details = findViewById(R.id.genre2_movie_Details)
         genre2Layout_movie_Details = findViewById(R.id.genre2Layout_movie_Details)
         movieOverview_MovieDetails = findViewById(R.id.movieOverview_MovieDetails)
+        progress_bar_MovieDetails = findViewById(R.id.progress_bar_MovieDetails)
+        popularity_movieDetails = findViewById(R.id.popularity_movieDetails)
 
         movieId = intent.getStringExtra("MovieIdPass").toString()
-        Toast.makeText(this,"Id: $movieId",Toast.LENGTH_SHORT).show()
 
         backBtn_movie_Details.setOnClickListener {
             onBackPressed()
@@ -103,8 +103,8 @@ class MovieDetailsActivity : AppCompatActivity() {
                 }else{
                     genre2Layout_movie_Details.visibility = View.INVISIBLE
                 }
-
-
+                progress_bar_MovieDetails.progress = it.popularity.toInt()
+                popularity_movieDetails.text = "Popularity $it.popularity.toInt()%"
 
             }
 

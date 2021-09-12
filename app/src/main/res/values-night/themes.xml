@@ -19,4 +19,9 @@
         <item name="android:textColorSecondary">@color/white</item>
     </style>
 
+    <style name="CircularDeterminateProgressBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/circle_progress</item>
+    </style>
+
 </resources>

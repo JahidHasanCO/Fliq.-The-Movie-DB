@@ -5,17 +5,19 @@
       <map>
         <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/drawable/adult_bg.xml" value="0.3310810810810811" />
         <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/drawable/bottom_nav_bg.xml" value="0.3310810810810811" />
+        <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/drawable/circle_progress.xml" value="0.3310810810810811" />
         <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/drawable/ic_arrow_left_3.xml" value="0.3310810810810811" />
         <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/drawable/ic_film_strip.xml" value="0.3310810810810811" />
         <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/drawable/ic_home.xml" value="0.3310810810810811" />
         <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/drawable/ic_no_internet.xml" value="0.3310810810810811" />
+        <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/drawable/ic_save.xml" value="0.3310810810810811" />
         <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/drawable/ic_search.xml" value="0.3310810810810811" />
         <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/drawable/ic_tv.xml" value="0.3310810810810811" />
         <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/drawable/ic_user.xml" value="0.3310810810810811" />
         <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/drawable/poster_bg.xml" value="0.3310810810810811" />
         <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/drawable/tab_color_bottom_nav.xml" value="0.3310810810810811" />
         <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/layout/activity_movie_details.xml" value="0.3171171171171171" />
+        <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/layout/activity_movie_details.xml" value="0.25" />
         <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/layout/fragment_movie.xml" value="0.33" />
         <entry key="..\:/Users/vdjso/AndroidStudioProjects/Fliq/app/src/main/res/layout/fragment_search.xml" value="0.30495495495495495" />
