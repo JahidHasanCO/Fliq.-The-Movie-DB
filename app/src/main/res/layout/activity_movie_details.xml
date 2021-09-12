@@ -162,7 +162,7 @@
                         android:background="@drawable/circle_bg" />
 
                     <TextView
-                        android:id="@+id/genre2_movie_Detailsr"
+                        android:id="@+id/genre2_movie_Details"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -281,6 +281,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLines="8"
                 android:text="overview"
                 android:textSize="14sp"
                 android:textColor="@color/textAd"
