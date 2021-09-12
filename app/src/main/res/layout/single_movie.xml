@@ -10,7 +10,7 @@
     android:layout_marginTop="5dp"
     android:orientation="vertical"
     android:layout_width="200dp"
-    android:layout_height="280dp">
+    android:layout_height="390dp">
 
     <LinearLayout
         android:orientation="vertical"
@@ -22,7 +22,8 @@
     <ImageView
         android:id="@+id/imageView_single_movie"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:src="@drawable/poster"
+        android:layout_height="300dp"
         android:scaleType="centerCrop"
          />
 
