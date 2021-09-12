@@ -6,6 +6,9 @@ import android.view.WindowManager
 import dev.jahidhasanco.fliq.R
 
 class MovieDetailsActivity : AppCompatActivity() {
+
+    var movieId: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
@@ -14,6 +17,10 @@ class MovieDetailsActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         );
 
+        val bundle = intent.extras
+        if (bundle != null) {
+            movieId = bundle.getString("MovieIdPass").toString()
+        }
 
 
     }

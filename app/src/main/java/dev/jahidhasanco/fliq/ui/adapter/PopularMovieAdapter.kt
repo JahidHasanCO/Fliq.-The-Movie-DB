@@ -1,6 +1,7 @@
 package dev.jahidhasanco.fliq.ui.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import dev.jahidhasanco.fliq.R
 import dev.jahidhasanco.fliq.data.model.movie.Result
 import dev.jahidhasanco.fliq.data.utils.Constants
 import dev.jahidhasanco.fliq.data.utils.Util
+import dev.jahidhasanco.fliq.ui.activity.MovieDetailsActivity
 
 
 class PopularMovieAdapter(val ctx: Context, val movies: List<Result>) :
@@ -51,7 +53,6 @@ class PopularMovieAdapter(val ctx: Context, val movies: List<Result>) :
         }
 
 
-
 //        Glide.with(ctx)
 //            .load(Util.posterUrlMake(movie.posterPath))
 //            .placeholder(R.drawable.poster_bg)
@@ -68,6 +69,15 @@ class PopularMovieAdapter(val ctx: Context, val movies: List<Result>) :
 //                }
 //
 //            })
+
+
+        viewHolder.itemView.setOnClickListener {
+            val intent = Intent(ctx,MovieDetailsActivity::class.java)
+            val movieId = movie.id
+            intent.putExtra("MovieIdPass",movieId)
+            ctx.startActivity(intent)
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -82,5 +92,7 @@ class PopularMovieAdapter(val ctx: Context, val movies: List<Result>) :
         val genre1 = itemView.findViewById<TextView>(R.id.genre1_movie)
         val genre2 = itemView.findViewById<TextView>(R.id.genre2_movie)
         val genre2Layout = itemView.findViewById<LinearLayout>(R.id.genre2Layout_movie)
+
+
     }
 }

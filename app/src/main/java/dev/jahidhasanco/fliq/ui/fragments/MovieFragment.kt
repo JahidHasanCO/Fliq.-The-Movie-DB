@@ -59,6 +59,8 @@ class MovieFragment : Fragment() {
         movieViewModel.refresh()
 
         observeViewModel()
+
+
         return view
     }
 
@@ -103,8 +105,9 @@ class MovieFragment : Fragment() {
                     adapter = popularMovieAdapter
                     layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                     setHasFixedSize(false)
-                    showLayout()
+
                 }
+                showLayout()
 
             }
 
@@ -118,7 +121,6 @@ class MovieFragment : Fragment() {
                     adapter = topRatedMovieAdapter
                     layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                     setHasFixedSize(false)
-                    showLayout()
                 }
 
             }
