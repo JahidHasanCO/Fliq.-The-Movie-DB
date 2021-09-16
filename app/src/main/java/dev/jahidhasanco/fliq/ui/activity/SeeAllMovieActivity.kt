@@ -3,7 +3,8 @@ package dev.jahidhasanco.fliq.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import android.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import dev.jahidhasanco.fliq.R
 
 class SeeAllMovieActivity : AppCompatActivity() {
@@ -11,6 +12,7 @@ class SeeAllMovieActivity : AppCompatActivity() {
     private var comeFrom = ""
 
     lateinit var toolbar: Toolbar
+    lateinit var collapsingToolbar_seeAllMovies: CollapsingToolbarLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +24,11 @@ class SeeAllMovieActivity : AppCompatActivity() {
         );
 
         toolbar = findViewById(R.id.toolbar_seeAllMovies)
-        setActionBar(toolbar)
-        toolbar.title = "Popular Movies"
+        collapsingToolbar_seeAllMovies = findViewById(R.id.collapsingToolbar_seeAllMovies)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+        collapsingToolbar_seeAllMovies.title = "Popular Movies"
 
         comeFrom = intent.getStringExtra("ComeFrom").toString()
 
