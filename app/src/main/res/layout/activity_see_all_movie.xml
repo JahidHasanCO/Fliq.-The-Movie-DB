@@ -17,7 +17,7 @@
         <!--CollapsingToolbar goes here-->
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbar"
+            android:id="@+id/collapsingToolbar_seeAllMovies"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
@@ -31,7 +31,7 @@
                 android:scaleType="fitXY"/>
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/toolbar_seeAllMovies"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:titleTextColor="@android:color/white"/>
@@ -39,6 +39,12 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
