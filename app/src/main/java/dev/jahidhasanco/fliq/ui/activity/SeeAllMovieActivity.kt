@@ -2,6 +2,7 @@ package dev.jahidhasanco.fliq.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
@@ -9,17 +10,18 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
-import com.smarteist.autoimageslider.SliderAnimations
-import dev.jahidhasanco.fliq.R
+
 import dev.jahidhasanco.fliq.data.viewModel.MovieViewModel
-import dev.jahidhasanco.fliq.ui.adapter.PopularMovieAdapter
 import dev.jahidhasanco.fliq.ui.adapter.SeeAllMovieAdapter
-import dev.jahidhasanco.fliq.ui.adapter.silder.MovieSliderAdapter
-import org.w3c.dom.Text
+
+
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
+import dev.jahidhasanco.fliq.R
+
 
 class SeeAllMovieActivity : AppCompatActivity() {
 
@@ -44,10 +46,16 @@ class SeeAllMovieActivity : AppCompatActivity() {
         );
         comeFrom = intent.getStringExtra("ComeFrom").toString()
         toolbar = findViewById(R.id.toolbar_seeAllMovies)
+
+
         collapsingToolbar_seeAllMovies = findViewById(R.id.collapsingToolbar_seeAllMovies)
         textTitle_seeAllMovies = findViewById(R.id.textTitle_seeAllMovies)
         recyclerView_seeAllMovies = findViewById(R.id.recyclerView_seeAllMovies)
+
         setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true);
+        supportActionBar!!.setDisplayShowHomeEnabled(true);
+
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
 
@@ -68,6 +76,7 @@ class SeeAllMovieActivity : AppCompatActivity() {
 
 
     }
+
 
     private fun observeViewModel() {
 
@@ -126,5 +135,13 @@ class SeeAllMovieActivity : AppCompatActivity() {
         })
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+            return true;
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 }
