@@ -2,22 +2,18 @@ package dev.jahidhasanco.fliq.ui.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.Drawable
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
+
 import dev.jahidhasanco.fliq.R
 import dev.jahidhasanco.fliq.data.model.movie.Result
-import dev.jahidhasanco.fliq.data.utils.Constants
+
 import dev.jahidhasanco.fliq.data.utils.Util
 import dev.jahidhasanco.fliq.ui.activity.MovieDetailsActivity
 

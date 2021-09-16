@@ -63,6 +63,7 @@ class MovieFragment : Fragment() {
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
         movieViewModel.refresh()
+        movieViewModel.getPopularMovies("",1)
 
         observeViewModel()
 

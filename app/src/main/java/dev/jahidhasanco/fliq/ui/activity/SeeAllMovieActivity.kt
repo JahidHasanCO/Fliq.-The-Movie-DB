@@ -56,6 +56,7 @@ class SeeAllMovieActivity : AppCompatActivity() {
             "PopularMovies" -> {
                 collapsingToolbar_seeAllMovies.title = "Popular Movies"
                 textTitle_seeAllMovies.text = "Popular Movies"
+                movieViewModel.getPopularMovies("",1)
                 observeViewModel()
             }
             else -> {
