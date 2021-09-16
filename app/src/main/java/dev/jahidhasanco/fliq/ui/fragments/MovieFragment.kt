@@ -1,5 +1,6 @@
 package dev.jahidhasanco.fliq.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,6 +20,8 @@ import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
 import dev.jahidhasanco.fliq.R
 import dev.jahidhasanco.fliq.data.viewModel.MovieViewModel
+import dev.jahidhasanco.fliq.ui.activity.MovieDetailsActivity
+import dev.jahidhasanco.fliq.ui.activity.SeeAllMovieActivity
 import dev.jahidhasanco.fliq.ui.adapter.PopularMovieAdapter
 import dev.jahidhasanco.fliq.ui.adapter.silder.MovieSliderAdapter
 
@@ -39,6 +43,7 @@ class MovieFragment : Fragment() {
     lateinit var noInternet_Layout_movieFragment: LinearLayout
     lateinit var popular_MovieLayout_movieFrag: LinearLayout
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,12 +58,19 @@ class MovieFragment : Fragment() {
         popular_MovieLayout_movieFrag = view.findViewById(R.id.popular_MovieLayout_movieFrag)
         topRated_MovieLayout_movieFrag = view.findViewById(R.id.topRated_MovieLayout_movieFrag)
         topRatedMovieRecView_moviesFragment = view.findViewById(R.id.topRatedMovieRecView_moviesFragment)
+        val popular_MovieSeeAll_movieFrag = view.findViewById<TextView>(R.id.popular_MovieSeeAll_movieFrag)
 
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
         movieViewModel.refresh()
 
         observeViewModel()
+
+        popular_MovieSeeAll_movieFrag.setOnClickListener {
+            val intent = Intent(context, SeeAllMovieActivity::class.java)
+            intent.putExtra("ComeFrom","PopularMovies")
+            startActivity(intent)
+        }
 
 
         return view
