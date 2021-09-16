@@ -10,15 +10,15 @@
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     android:orientation="vertical"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="200dp">
 
 
     <ImageView
         android:id="@+id/imageView_single_movie_seeAll"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:src="@drawable/poster"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
          />
 
 

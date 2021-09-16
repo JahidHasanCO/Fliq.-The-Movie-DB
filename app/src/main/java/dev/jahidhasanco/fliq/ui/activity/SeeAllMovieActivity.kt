@@ -2,39 +2,42 @@ package dev.jahidhasanco.fliq.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.google.android.material.appbar.MaterialToolbar
+
 
 import dev.jahidhasanco.fliq.data.viewModel.MovieViewModel
 import dev.jahidhasanco.fliq.ui.adapter.SeeAllMovieAdapter
 
 
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import dev.jahidhasanco.fliq.R
+import kotlin.math.log
 
 
 class SeeAllMovieActivity : AppCompatActivity() {
 
     private var comeFrom = ""
 
-    lateinit var toolbar: Toolbar
-    lateinit var collapsingToolbar_seeAllMovies: CollapsingToolbarLayout
+    lateinit var toolbar_seeAllMovies: MaterialToolbar
+
     lateinit var recyclerView_seeAllMovies: RecyclerView
 
     lateinit var seeAllMovieAdapter: SeeAllMovieAdapter
     lateinit var movieViewModel: MovieViewModel
+    lateinit var layoutManagerGrid: GridLayoutManager
 
-    lateinit var textTitle_seeAllMovies: TextView
+    var page = 1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,35 +47,64 @@ class SeeAllMovieActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         );
+
         comeFrom = intent.getStringExtra("ComeFrom").toString()
-        toolbar = findViewById(R.id.toolbar_seeAllMovies)
 
+        toolbar_seeAllMovies = findViewById(R.id.toolbar_seeAllMovies)
 
-        collapsingToolbar_seeAllMovies = findViewById(R.id.collapsingToolbar_seeAllMovies)
-        textTitle_seeAllMovies = findViewById(R.id.textTitle_seeAllMovies)
+        setSupportActionBar(toolbar_seeAllMovies)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        toolbar_seeAllMovies.setTitleTextColor(resources.getColor(R.color.white))
+        toolbar_seeAllMovies.setNavigationIconTint(resources.getColor(R.color.white))
+
+        layoutManagerGrid = GridLayoutManager(this@SeeAllMovieActivity,3)
         recyclerView_seeAllMovies = findViewById(R.id.recyclerView_seeAllMovies)
 
-        setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true);
-        supportActionBar!!.setDisplayShowHomeEnabled(true);
+
 
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
+        seeAllMovieAdapter = SeeAllMovieAdapter(this)
+        recyclerView_seeAllMovies.apply {
+            adapter = seeAllMovieAdapter
+            layoutManager = layoutManagerGrid
+            setHasFixedSize(false)
 
+        }
 
         when(comeFrom){
             "PopularMovies" -> {
-                collapsingToolbar_seeAllMovies.title = "Popular Movies"
-                textTitle_seeAllMovies.text = "Popular Movies"
-                movieViewModel.getPopularMovies("",1)
+
+                toolbar_seeAllMovies.title =  "Popular Movies"
+                movieViewModel.getPopularMovies("",page)
                 observeViewModel()
             }
             else -> {
-                collapsingToolbar_seeAllMovies.title = ""
-                textTitle_seeAllMovies.text = ""
+                toolbar_seeAllMovies.title =  ""
             }
 
         }
+
+//        recyclerView_seeAllMovies.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//
+//
+//                    var visibleitem = layoutManagerGrid.childCount
+//                    var pastvisibleitem = layoutManagerGrid.findFirstCompletelyVisibleItemPosition()
+//                    var total = 20
+//
+//                    if(visibleitem + pastvisibleitem >= total){
+//                        page++
+//                        movieViewModel.getPopularMovies("",page)
+//
+//                        observeViewModel()
+//                    }
+//
+//                super.onScrolled(recyclerView, dx, dy)
+//            }
+//        })
+
 
 
     }
@@ -121,14 +153,7 @@ class SeeAllMovieActivity : AppCompatActivity() {
         movieViewModel.PopularMovies.observe(this, Observer {movies ->
             movies?.let {
 
-                seeAllMovieAdapter = SeeAllMovieAdapter(this,it)
-                recyclerView_seeAllMovies.apply {
-                    adapter = seeAllMovieAdapter
-                    layoutManager = GridLayoutManager(this@SeeAllMovieActivity,3)
-                    setHasFixedSize(false)
-
-                }
-
+                seeAllMovieAdapter.addMovie(it)
 
             }
 

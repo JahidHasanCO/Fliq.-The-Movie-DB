@@ -24,10 +24,9 @@
         <item name="android:progressDrawable">@drawable/circle_progress</item>
     </style>
 
-    <style name="expandedBarTextStyle" parent="Theme.MovieApp">
+ <style name="titleAppBar" parent="Theme.MovieApp">
         <!-- Customize your theme here. -->
-        <item name="android:textSize">0sp</item>
-        <item name="android:textColor">@android:color/transparent</item>
+     <item name="android:textSize">20sp</item>
         <item name="fontFamily">@font/aldrich</item>
     </style>
 
