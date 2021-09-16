@@ -21,13 +21,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/backGround"
+            app:expandedTitleTextAppearance="@style/expandedBarTextStyle"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <TextView
                 android:id="@+id/textTitle_seeAllMovies"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_collapseMode="parallax"
                 android:text="Popular Movies"
                 android:gravity="center"
                 android:textSize="20sp"

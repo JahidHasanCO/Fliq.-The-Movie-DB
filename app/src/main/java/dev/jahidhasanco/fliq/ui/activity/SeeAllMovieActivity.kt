@@ -31,11 +31,9 @@ class SeeAllMovieActivity : AppCompatActivity() {
         collapsingToolbar_seeAllMovies = findViewById(R.id.collapsingToolbar_seeAllMovies)
         textTitle_seeAllMovies = findViewById(R.id.textTitle_seeAllMovies)
         setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
 
 
-        collapsingToolbar_seeAllMovies
 
         when(comeFrom){
             "PopularMovies" -> {
