@@ -18,9 +18,10 @@ import dev.jahidhasanco.fliq.data.utils.Util
 import dev.jahidhasanco.fliq.ui.activity.MovieDetailsActivity
 
 
-class SeeAllMovieAdapter(val ctx: Context, val movies: List<Result>) :
+class SeeAllMovieAdapter(val ctx: Context ) :
     RecyclerView.Adapter<SeeAllMovieAdapter.MyViewHolder>() {
 
+    var movies: ArrayList<Result> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view: View = LayoutInflater.from(ctx)
@@ -43,6 +44,11 @@ class SeeAllMovieAdapter(val ctx: Context, val movies: List<Result>) :
             ctx.startActivity(intent)
         }
 
+    }
+
+    fun addMovie(movie : List<Result>){
+        movies.addAll(movie)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
