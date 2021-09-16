@@ -20,15 +20,18 @@
             android:id="@+id/collapsingToolbar_seeAllMovies"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
+            android:background="@color/backGround"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <ImageView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_collapseMode="parallax"
-                android:src="@drawable/poster_bg"
-                android:scaleType="fitXY"/>
+                android:text="Popular Movies"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:fontFamily="@font/aldrich"
+                />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_seeAllMovies"
