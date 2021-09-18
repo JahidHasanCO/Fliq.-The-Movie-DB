@@ -1,7 +1,10 @@
 ![GitHub Cards Preview](https://github.com/JahidHasanCO/Fliq.-The-Movie-DB/blob/master/ART/cover%20dark.png)
 
 # 🔖Fliq. - The Movie DB
-Fliq is a Movie database app. This app is integrated with The Movie DB API. 
+
+Fliq is a Movie database app. This app is integrated with The Movie DB API. This app UI is simple enough to use and the app is a fun way to get an overview of your movie experience. This repo was created with help of awesome UI, Material Design, and the latest features. 
+
+
 ## Built With 🛠
 
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android
