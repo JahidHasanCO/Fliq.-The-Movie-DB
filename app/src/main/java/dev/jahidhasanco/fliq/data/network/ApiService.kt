@@ -19,10 +19,8 @@ interface ApiService {
     @GET("3/movie/upcoming?api_key=$API_KEY")
     suspend fun getUpcomingMovies(@Query("language") language: String,@Query("page") page : Int): Response<Movie>
 
-
     @GET("3/movie/popular?api_key=$API_KEY")
     suspend fun getPopularMovies(@Query("language") language: String,@Query("page") page : Int): Response<Movie>
-
 
     @GET("3/movie/top_rated?api_key=$API_KEY")
     suspend fun getTopRatedMovies(@Query("language") language: String,@Query("page") page : Int): Response<Movie>

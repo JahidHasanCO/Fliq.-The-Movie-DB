@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "731203548673",
+    "project_id": "fliq-7b0c3",
+    "storage_bucket": "fliq-7b0c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731203548673:android:3f152dd2534291ef2d3200",
+        "android_client_info": {
+          "package_name": "dev.jahidhasanco.fliq"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731203548673-ggkc90hhmnoturnoo6q1vbicuvh7dam4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2uqijMHnEr5kIIECb4LIMXakmJajpnME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731203548673-ggkc90hhmnoturnoo6q1vbicuvh7dam4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

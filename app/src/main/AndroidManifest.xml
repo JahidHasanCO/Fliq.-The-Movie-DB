@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieApp">
         <activity
+            android:name=".ui.activity.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.SignUpActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.activity.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
@@ -20,17 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activity.SeeAllMovieActivity" />
+        <activity android:name=".ui.activity.SeeAllMovieActivity" />
         <activity
             android:name=".ui.activity.YoutubeVideoPlayerActivity"
             android:screenOrientation="landscape" />
-        <activity
-            android:name=".ui.activity.MovieDetailsActivity"
-            />
-        <activity
-            android:name=".ui.activity.MainActivity"
-           />
+        <activity android:name=".ui.activity.MovieDetailsActivity" />
+        <activity android:name=".ui.activity.MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

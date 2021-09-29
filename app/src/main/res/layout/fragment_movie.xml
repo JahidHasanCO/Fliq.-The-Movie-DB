@@ -46,6 +46,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_slider_movieFragment">
 
             <LinearLayout
@@ -93,10 +95,13 @@
 
         <LinearLayout
             android:id="@+id/topRated_MovieLayout_movieFrag"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/popular_MovieLayout_movieFrag">
 
             <LinearLayout
@@ -138,8 +143,7 @@
                 android:id="@+id/topRatedMovieRecView_moviesFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="60dp"
-                />
+                android:layout_marginBottom="60dp" />
 
         </LinearLayout>
 
