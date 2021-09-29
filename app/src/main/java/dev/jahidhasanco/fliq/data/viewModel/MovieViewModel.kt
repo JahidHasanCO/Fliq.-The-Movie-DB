@@ -20,6 +20,7 @@ class MovieViewModel(): ViewModel() {
     }
     val upComingMovies = MutableLiveData<List<Result>>()
     val PopularMovies = MutableLiveData<List<Result>>()
+    var popullarMoviesTotalResults = -1
     val TopRatedMovies = MutableLiveData<List<Result>>()
     val MovieDetails = MutableLiveData<MovieDetails>()
     val MovieCast = MutableLiveData<List<Cast>>()
@@ -132,6 +133,7 @@ class MovieViewModel(): ViewModel() {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     PopularMovies.value = response.body()?.results
+                    popullarMoviesTotalResults = response.body()!!.totalResults
                     movieLoadError.value = null
                     loading.value = false
                 } else {

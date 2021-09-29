@@ -83,6 +83,22 @@ class SeeAllMovieActivity : AppCompatActivity() {
         }
 
 //        recyclerView_seeAllMovies.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+//
+//
+//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//                super.onScrollStateChanged(recyclerView, newState)
+//                if (layoutManagerGrid.childCount + layoutManagerGrid.findFirstVisibleItemPosition()
+//                    >= layoutManagerGrid.itemCount - 2) {  //if near fifth item from end
+//                    page++
+//                    getPagedData()
+//                }
+//            }
+//
+//
+//
+//        })
+
+//        recyclerView_seeAllMovies.addOnScrollListener(object : RecyclerView.OnScrollListener(){
 //            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 //
 //
@@ -105,7 +121,20 @@ class SeeAllMovieActivity : AppCompatActivity() {
 
     }
 
+    private fun getPagedData(){
+        when(comeFrom){
+            "PopularMovies" -> {
 
+                toolbar_seeAllMovies.title =  "Popular Movies"
+                movieViewModel.getPopularMovies("",page)
+                observeViewModel()
+            }
+            else -> {
+                toolbar_seeAllMovies.title =  ""
+            }
+
+        }
+    }
     private fun observeViewModel() {
 
 
@@ -148,9 +177,7 @@ class SeeAllMovieActivity : AppCompatActivity() {
     private fun getPopularMovies() {
         movieViewModel.PopularMovies.observe(this, Observer {movies ->
             movies?.let {
-
                 seeAllMovieAdapter.addMovie(it)
-
             }
 
         })
