@@ -15,6 +15,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import com.github.ybq.android.spinkit.SpinKitView
+import com.github.ybq.android.spinkit.sprite.Sprite
+import com.github.ybq.android.spinkit.style.Wave
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
@@ -35,13 +38,14 @@ class MovieFragment : Fragment() {
     lateinit var topRatedMovieAdapter: PopularMovieAdapter
 
     lateinit var movieViewModel: MovieViewModel
-    lateinit var animationView_movieFragment: LottieAnimationView
     lateinit var popularMovieRecView_moviesFragment: RecyclerView
     lateinit var topRated_MovieLayout_movieFrag: LinearLayout
     lateinit var topRatedMovieRecView_moviesFragment: RecyclerView
 
     lateinit var noInternet_Layout_movieFragment: LinearLayout
     lateinit var popular_MovieLayout_movieFrag: LinearLayout
+
+    lateinit var spin_kit_movieFrag: SpinKitView
 
 
     override fun onCreateView(
@@ -52,14 +56,18 @@ class MovieFragment : Fragment() {
         val view =  inflater.inflate(R.layout.fragment_movie, container, false)
 
         image_slider_movieFragment = view.findViewById(R.id.image_slider_movieFragment)
-        animationView_movieFragment = view.findViewById(R.id.animationView_movieFragment)
+
         popularMovieRecView_moviesFragment = view.findViewById(R.id.popularMovieRecView_moviesFragment)
         noInternet_Layout_movieFragment = view.findViewById(R.id.noInternet_Layout_movieFragment)
         popular_MovieLayout_movieFrag = view.findViewById(R.id.popular_MovieLayout_movieFrag)
         topRated_MovieLayout_movieFrag = view.findViewById(R.id.topRated_MovieLayout_movieFrag)
         topRatedMovieRecView_moviesFragment = view.findViewById(R.id.topRatedMovieRecView_moviesFragment)
+        spin_kit_movieFrag = view.findViewById(R.id.spin_kit_movieFrag)
         val popular_MovieSeeAll_movieFrag = view.findViewById<TextView>(R.id.popular_MovieSeeAll_movieFrag)
 
+        val doubleBounce: Sprite = Wave()
+        spin_kit_movieFrag.setIndeterminateDrawable(doubleBounce)
+        hideLayout()
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
         movieViewModel.refresh()
@@ -73,19 +81,22 @@ class MovieFragment : Fragment() {
             startActivity(intent)
         }
 
+        showLayout()
 
         return view
     }
 
     private fun hideLayout() {
-        animationView_movieFragment.playAnimation()
+
         image_slider_movieFragment.visibility = View.GONE
-        animationView_movieFragment.visibility = View.VISIBLE
+        popular_MovieLayout_movieFrag.visibility = View.GONE
+        topRated_MovieLayout_movieFrag.visibility = View.GONE
+        spin_kit_movieFrag.visibility = View.VISIBLE
     }
 
     private fun showLayout(){
-        animationView_movieFragment.pauseAnimation()
-        animationView_movieFragment.visibility = View.GONE
+
+        spin_kit_movieFrag.visibility = View.GONE
         image_slider_movieFragment.visibility = View.VISIBLE
         popular_MovieLayout_movieFrag.visibility = View.VISIBLE
         topRated_MovieLayout_movieFrag.visibility = View.VISIBLE
@@ -120,7 +131,6 @@ class MovieFragment : Fragment() {
                     setHasFixedSize(false)
 
                 }
-                showLayout()
 
             }
 
@@ -160,7 +170,7 @@ class MovieFragment : Fragment() {
             isLoading?.let {
 
 
-                animationView_movieFragment.visibility = if(it) View.VISIBLE else View.GONE
+                spin_kit_movieFrag.visibility = if(it) View.VISIBLE else View.GONE
                 if(it) {
                     image_slider_movieFragment.visibility = View.GONE
                     popular_MovieLayout_movieFrag.visibility = View.GONE

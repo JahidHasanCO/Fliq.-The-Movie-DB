@@ -147,18 +147,19 @@
 
         </LinearLayout>
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView_movieFragment"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
+
+        <com.github.ybq.android.spinkit.SpinKitView
             android:visibility="invisible"
+            android:id="@+id/spin_kit_movieFrag"
+            style="@style/SpinKitView.Large.Wave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/primary"
             app:layout_constraintBottom_toBottomOf="@+id/popular_MovieLayout_movieFrag"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/progress" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/noInternet_Layout_movieFragment"

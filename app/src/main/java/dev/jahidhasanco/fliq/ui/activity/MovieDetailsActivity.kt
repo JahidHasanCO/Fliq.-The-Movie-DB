@@ -85,6 +85,8 @@ class MovieDetailsActivity : AppCompatActivity() {
         descLayout = findViewById(R.id.descLayout)
         trailer_movieDetails = findViewById(R.id.trailer_movieDetails)
 
+        val doubleBounce: Sprite = Wave()
+        spin_kit_movieDetails.indeterminateDrawable = doubleBounce
         hideAllLayouts()
 
         movieId = intent.getStringExtra("MovieIdPass").toString()
@@ -92,8 +94,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         backBtn_movie_Details.setOnClickListener {
             onBackPressed()
         }
-        val doubleBounce: Sprite = Wave()
-        spin_kit_movieDetails.indeterminateDrawable = doubleBounce
+
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
         movieViewModel.getMovieDetails(movieId, "en-US")
