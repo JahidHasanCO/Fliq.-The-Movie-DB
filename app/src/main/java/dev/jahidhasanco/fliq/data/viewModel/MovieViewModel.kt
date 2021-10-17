@@ -31,11 +31,14 @@ class MovieViewModel(): ViewModel() {
 
     fun refresh() {
         fetchUpcomingMovies()
-        fetchTopRatedMovies()
+        fetchTopRatedMovies("",1)
     }
 
     fun getPopularMovies(language: String,page : Int){
         fetchPopularMovies(language,page)
+    }
+    fun getTopRatedMovies(language: String,page : Int){
+        fetchTopRatedMovies(language,page)
     }
 
     fun getMovieDetails(movieId : String,language: String) {
@@ -145,10 +148,10 @@ class MovieViewModel(): ViewModel() {
         loading.value = false
     }
 
-    private fun fetchTopRatedMovies() {
+    private fun fetchTopRatedMovies(language: String,page : Int) {
         loading.value = true
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = retrofitService.getTopRatedMovies("",1)
+            val response = retrofitService.getTopRatedMovies(language, page)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     TopRatedMovies.value = response.body()?.results

@@ -64,6 +64,7 @@ class MovieFragment : Fragment() {
         topRatedMovieRecView_moviesFragment = view.findViewById(R.id.topRatedMovieRecView_moviesFragment)
         spin_kit_movieFrag = view.findViewById(R.id.spin_kit_movieFrag)
         val popular_MovieSeeAll_movieFrag = view.findViewById<TextView>(R.id.popular_MovieSeeAll_movieFrag)
+        val topRated_MovieSeeAll_movieFrag = view.findViewById<TextView>(R.id.topRated_MovieSeeAll_movieFrag)
 
         val doubleBounce: Sprite = Wave()
         spin_kit_movieFrag.setIndeterminateDrawable(doubleBounce)
@@ -78,6 +79,12 @@ class MovieFragment : Fragment() {
         popular_MovieSeeAll_movieFrag.setOnClickListener {
             val intent = Intent(context, SeeAllMovieActivity::class.java)
             intent.putExtra("ComeFrom","PopularMovies")
+            startActivity(intent)
+        }
+
+        topRated_MovieSeeAll_movieFrag.setOnClickListener {
+            val intent = Intent(context, SeeAllMovieActivity::class.java)
+            intent.putExtra("ComeFrom","TopRatedMovies")
             startActivity(intent)
         }
 

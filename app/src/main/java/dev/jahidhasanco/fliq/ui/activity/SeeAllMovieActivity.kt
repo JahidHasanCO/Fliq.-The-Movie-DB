@@ -70,10 +70,17 @@ class SeeAllMovieActivity : AppCompatActivity() {
         }
 
         when(comeFrom){
+
             "PopularMovies" -> {
 
                 toolbar_seeAllMovies.title =  "Popular Movies"
                 movieViewModel.getPopularMovies("",page)
+                observeViewModel()
+            }
+            "TopRatedMovies" -> {
+
+                toolbar_seeAllMovies.title =  "Top Rated Movies"
+                movieViewModel.getTopRatedMovies("",page)
                 observeViewModel()
             }
             else -> {
@@ -141,7 +148,9 @@ class SeeAllMovieActivity : AppCompatActivity() {
         if(comeFrom == "PopularMovies"){
             getPopularMovies()
         }
-
+        else if(comeFrom == "TopRatedMovies"){
+            getTopRatedMovies()
+        }
 
         movieViewModel.movieLoadError.observe(this, Observer { isError ->
 
@@ -171,6 +180,16 @@ class SeeAllMovieActivity : AppCompatActivity() {
 //                }
 
             }
+        })
+    }
+
+    private fun getTopRatedMovies() {
+
+        movieViewModel.TopRatedMovies.observe(this, Observer {movies ->
+            movies?.let {
+                seeAllMovieAdapter.addMovie(it)
+            }
+
         })
     }
 
