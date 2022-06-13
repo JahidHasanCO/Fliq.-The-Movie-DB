@@ -21,6 +21,7 @@ import com.github.ybq.android.spinkit.style.Wave
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
+import dagger.hilt.android.AndroidEntryPoint
 import dev.jahidhasanco.fliq.R
 import dev.jahidhasanco.fliq.data.viewModel.MovieViewModel
 import dev.jahidhasanco.fliq.ui.activity.MovieDetailsActivity
@@ -28,7 +29,7 @@ import dev.jahidhasanco.fliq.ui.activity.SeeAllMovieActivity
 import dev.jahidhasanco.fliq.ui.adapter.PopularMovieAdapter
 import dev.jahidhasanco.fliq.ui.adapter.silder.MovieSliderAdapter
 
-
+@AndroidEntryPoint
 class MovieFragment : Fragment() {
 
     lateinit var image_slider_movieFragment: SliderView

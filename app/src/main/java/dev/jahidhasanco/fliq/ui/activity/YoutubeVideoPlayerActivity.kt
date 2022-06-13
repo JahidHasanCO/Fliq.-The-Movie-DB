@@ -14,10 +14,11 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import dev.jahidhasanco.fliq.R
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import dagger.hilt.android.AndroidEntryPoint
 import dev.jahidhasanco.fliq.data.viewModel.MovieViewModel
 import dev.jahidhasanco.fliq.ui.adapter.MovieCrewAdapter
 
-
+@AndroidEntryPoint
 class YoutubeVideoPlayerActivity : AppCompatActivity() {
 
     private var movieId: String = ""

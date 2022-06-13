@@ -2,18 +2,23 @@ package dev.jahidhasanco.fliq.data.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.jahidhasanco.fliq.data.model.movie.Result
 import dev.jahidhasanco.fliq.data.model.movie.YoutubeTrailer.MovieTrailer
 import dev.jahidhasanco.fliq.data.model.movie.movieCredit.Cast
 import dev.jahidhasanco.fliq.data.model.movie.movieCredit.Crew
 import dev.jahidhasanco.fliq.data.model.movie.movieCredit.MovieCredit
 import dev.jahidhasanco.fliq.data.model.movie.movieDetails.MovieDetails
+import dev.jahidhasanco.fliq.data.network.ApiService
 import dev.jahidhasanco.fliq.data.network.RetrofitService
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
-class MovieViewModel(): ViewModel() {
+@HiltViewModel
+class MovieViewModel @Inject constructor(
+    private val apiService: ApiService
+): ViewModel() {
 
-    val retrofitService = RetrofitService().getRetrofitService()
     var job: Job? = null
     val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
         onError("Exception handled: ${throwable.localizedMessage}")
@@ -56,7 +61,7 @@ class MovieViewModel(): ViewModel() {
     private fun fetchMovieTrailer(movieId: String, language: String) {
         loading.value = true
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = retrofitService.getMovieTrailer(movieId,language)
+            val response = apiService.getMovieTrailer(movieId,language)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     MovieTrailer.value = response.body()
@@ -76,7 +81,7 @@ class MovieViewModel(): ViewModel() {
 
         loading.value = true
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = retrofitService.getMovieCredit(movieId,language)
+            val response = apiService.getMovieCredit(movieId,language)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     MovieCast.value = response.body()!!.cast
@@ -96,7 +101,7 @@ class MovieViewModel(): ViewModel() {
     private fun fetchMovieDetails(movieId: String,language: String) {
         loading.value = true
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = retrofitService.getMovieDetails(movieId,language)
+            val response = apiService.getMovieDetails(movieId,language)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     MovieDetails.value = response.body()
@@ -114,7 +119,7 @@ class MovieViewModel(): ViewModel() {
     private fun fetchUpcomingMovies() {
         loading.value = true
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = retrofitService.getUpcomingMovies("",1)
+            val response = apiService.getUpcomingMovies("",1)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     upComingMovies.value = response.body()?.results
@@ -132,7 +137,7 @@ class MovieViewModel(): ViewModel() {
     private fun fetchPopularMovies(language: String,page : Int){
         loading.value = true
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = retrofitService.getPopularMovies(language,page)
+            val response = apiService.getPopularMovies(language,page)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     PopularMovies.value = response.body()?.results
@@ -151,7 +156,7 @@ class MovieViewModel(): ViewModel() {
     private fun fetchTopRatedMovies(language: String,page : Int) {
         loading.value = true
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = retrofitService.getTopRatedMovies(language, page)
+            val response = apiService.getTopRatedMovies(language, page)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     TopRatedMovies.value = response.body()?.results

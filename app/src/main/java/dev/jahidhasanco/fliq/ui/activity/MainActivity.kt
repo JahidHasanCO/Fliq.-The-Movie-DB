@@ -5,13 +5,14 @@ import android.view.MenuItem
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import dev.jahidhasanco.fliq.R
 import dev.jahidhasanco.fliq.ui.fragments.MovieFragment
 import dev.jahidhasanco.fliq.ui.fragments.ProfileFragment
 import dev.jahidhasanco.fliq.ui.fragments.SearchFragment
 import dev.jahidhasanco.fliq.ui.fragments.TvShowFragment
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() ,BottomNavigationView.OnNavigationItemSelectedListener{
 
     lateinit var bottomNavMenu: BottomNavigationView

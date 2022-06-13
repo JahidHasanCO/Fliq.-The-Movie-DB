@@ -28,8 +28,9 @@ import com.github.ybq.android.spinkit.style.DoubleBounce
 
 import com.github.ybq.android.spinkit.sprite.Sprite
 import com.github.ybq.android.spinkit.style.Wave
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MovieDetailsActivity : AppCompatActivity() {
 
     private var movieId: String = ""
