@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
+import dagger.hilt.android.AndroidEntryPoint
 
 
 import dev.jahidhasanco.fliq.data.viewModel.MovieViewModel
@@ -23,7 +24,7 @@ import dev.jahidhasanco.fliq.ui.adapter.SeeAllMovieAdapter
 import dev.jahidhasanco.fliq.R
 import kotlin.math.log
 
-
+@AndroidEntryPoint
 class SeeAllMovieActivity : AppCompatActivity() {
 
     private var comeFrom = ""
